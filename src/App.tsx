@@ -1,32 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useEffect } from 'react';
+import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import './App.css';
+import './index.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigate('/home')
+    }, 3000)
+  }, []);
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="indexCt">
+      <Link to="/home" className="bigText">
+        <img src="/Spotify_Logo_CMYK_Green.png" />
+      </Link>
+      <div className="redirect">Redirecting you to Home Page...</div>
     </div>
   )
 }
