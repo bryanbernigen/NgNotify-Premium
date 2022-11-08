@@ -1,9 +1,74 @@
 import * as React from 'react';
+import { Link } from "react-router-dom";
+import './sidebar.css'
 
-const Sidebar = () => {
+const Sidebar = ({ creds = 'guest' }: { creds: string }) => {
     return (
-        <div>
-            <h1>Sidebar</h1>
+        <div className="sidebar">
+            <div className="sidebarTop">
+                <Link to="/home" className='link'>
+                    <img className="sidebarLogo" src="/Spotify_Logo_RGB_White.png"/>
+                </Link>
+            </div>
+            <div className="sidebarMiddleWrap">
+                <div className="sidebarBottom">
+                    <Link to="/home" className='link'>
+                        <div className="sidebarItems">
+                            <img className="sidebarIcon" src="/icons8-home-144.png"/>
+                            <span className="sidebarText">Home</span>
+                        </div>
+                    </Link>
+                    <Link to="/searchsortfilter" className='link'>
+                        <div className="sidebarItems">
+                            <img className="sidebarIcon" src="/icons8-search-120.png"/>
+                            <span className="sidebarText">Search</span>
+                        </div>
+                    </Link>
+                    <Link to="/albums" className='link'>
+                        <div className="sidebarItems">
+                            <img className="sidebarIcon" src="/icons8-music-library-96.png"/>
+                            <span className="sidebarText">Albums</span>
+                        </div>
+                    </Link>
+                    {
+                        creds === "admin" ?
+                            <>
+                                <Link to="/adddata" className='link'>
+                                    <div className="sidebarItems">
+                                        <img className="sidebarIcon" src="/icons8-add-song-96.png"/>
+                                        <span className="sidebarText">Add Song</span>
+                                    </div>
+                                </Link>
+                                <Link to="/adddata" className='link'>
+                                    <div className="sidebarItems">
+                                        <img className="sidebarIcon" src="/icons8-music-library-96.png"/>
+                                        <span className="sidebarText">Add Album</span>
+                                    </div>
+                                </Link>
+                                <Link to="/listusers" className='link'>
+                                    <div className="sidebarItems">
+                                        <img className="sidebarIcon" src="/icons8-select-users-96.png"/>
+                                        <span className="sidebarText">Users</span>
+                                    </div>
+                                </Link>
+                            </>
+                        :   <></>
+                    }
+                </div>
+            </div>
+            <div className="sidebarBottomWrap">
+                <div className="sidebarBottom">
+                    <div className="sidebarItems">
+                        <img className="sidebarIcon" src="/icons8-add-new-100.png"/>
+                        <span className="sidebarText">Create Playlist</span>
+                    </div>
+                    <div className="sidebarItems">
+                        <img className="spc" src="/icons8-love-90.png"/>
+                        <span className="sidebarText">Liked Songs</span>
+                    </div>
+                </div>
+            </div>
+            <hr/>
         </div>
     );
 };

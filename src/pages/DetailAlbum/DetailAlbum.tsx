@@ -1,9 +1,16 @@
 import * as React from 'react';
+import Footbar from '../reusables/footbar/footbar';
+import Sidebar from '../reusables/sidebar/sidebar';
+import Topbar from '../reusables/topbar/topbar';
 
 const DetailAlbum = () => {
     return (
         <div>
-            <h1>Detail Album</h1>
+            <Sidebar creds='admin' />
+            <div className='ct'>
+                <Topbar />
+                <Footbar />
+            </div>
         </div>
     );
 };

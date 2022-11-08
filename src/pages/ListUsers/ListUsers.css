@@ -1,0 +1,45 @@
+.userCt {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    padding: 20px 40px;
+}
+
+.userTitle {
+    text-align: left;
+    font-family: "CircularStd-Bold";
+    color: white;
+    font-size: 72px;
+    margin-bottom: 5vh;
+}
+
+.tableUser {
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.05);
+    width: 75vw;
+    margin: auto;
+}
+
+th {
+    color: white;
+    font-family: "CircularStd-Light";
+    font-size: 16px;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 2px solid white;
+}
+
+td {
+    color: white;
+    font-family: "CircularStd-Light";
+    font-size: 14px;
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid white;
+}
+
+tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}

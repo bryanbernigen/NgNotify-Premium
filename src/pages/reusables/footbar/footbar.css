@@ -1,0 +1,117 @@
+.footerPage {
+    width: 100%;
+    color: white;
+}
+
+.footerTop {
+    text-align: left;
+}
+
+.footerTopLeft {
+    float: left;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    column-gap: 20%;
+    margin-bottom: 20px;
+    width: 50vw;
+}
+
+.footerTopLeftItem {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 1.5vh;
+}
+
+.footerTopLeftItemTitle {
+    font-family: "CircularStd-Bold";
+    width: max-content;
+    font-size: 16px;
+}
+
+.footerTopLeftItems {
+    font-family: "CircularStd-Light";
+    width: max-content;
+    font-size: 14px;
+}
+
+.footerTopRight {
+    float: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.footerTopRight i {
+    width: 16px;
+    height: 16px;
+    padding: 12px;
+    border-radius: 20px;
+    background-color: #535353;
+    color: white;
+}
+
+.footerTopRight i:hover {
+    background-color: #292929;
+    cursor: pointer;
+}
+
+.footerHr {
+    width: 100%;
+    border: none;
+    background-color: 0.05px solid #6c6c6c;
+}
+
+.footerBottom {
+    width: 100%;
+    color: #A7A7A7;
+    font-family: "CircularStd-Light";
+    font-size: 14px;
+}
+
+.footerBottomLeft {
+    float: left;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 5%;
+    width: 40vw;
+}
+
+.footerBottomRight {
+    float: right;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.footerBottomLeft a:link { 
+    text-decoration: none;
+    color: #A7A7A7;
+}
+
+.footerBottomLeft a:visited { 
+    text-decoration: none; 
+    color: #A7A7A7;
+}
+
+.footerBottomLeft a:hover { 
+    text-decoration: underline; 
+    color: white;
+}
+
+.footerBottomLeft a:active { 
+    text-decoration: underline; 
+    color: white;
+}
