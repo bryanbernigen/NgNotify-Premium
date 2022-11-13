@@ -25,28 +25,28 @@ const ListUsers = () => {
         },
     ])
 
-    useEffect(() => {
-        // setup request
-        // let bodyContent = JSON.stringify({
-        //     userToken: localStorage.getItem("userToken"),
-        // });
+    // useEffect(() => {
+    //     // setup request
+    //     // let bodyContent = JSON.stringify({
+    //     //     userToken: localStorage.getItem("userToken"),
+    //     // });
 
-        // make request
-        fetch("http://localhost:8000/api/userapi/showalluser", {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-        })
-            .then(res => res.json())
-            .then(data => {
-                // use request
-                console.log(data);
-                setUsers(data);
-            })
-            .catch(err => console.log("error:", err));
-    }, []);
+    //     // make request
+    //     fetch("http://localhost:8000/api/userapi/showalluser", {
+    //         method: 'GET',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json'
+    //         },
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             // use request
+    //             console.log(data);
+    //             setUsers(data);
+    //         })
+    //         .catch(err => console.log("error:", err));
+    // }, []);
 
     function appendUsers() {
         let header = ['user_id', 'email', "username", "isAdmin"];
@@ -61,12 +61,18 @@ const ListUsers = () => {
                 </thead>
                 <tbody>
                     {
-                        users.map((user) => {
+                        users?.map((user) => {
                             return(
                                 <tr key={user.user_id}>
-                                    { header.map((h) => {
-                                        return(<td>user[h]</td>)
-                                    })}
+                                    <td>{user.user_id}</td>
+                                    <td>{user.email}</td>
+                                    <td>{user.username}</td>
+                                    {
+                                        user.isAdmin === true ?
+                                            <td>Admin</td>
+                                        :
+                                            <td>User</td>
+                                    }
                                 </tr>
                             )
                         })
@@ -80,7 +86,7 @@ const ListUsers = () => {
         <div className='wrapper'>
             <Sidebar creds='admin'/>
             <div className='ct'>
-                <Topbar />
+                <Topbar creds='admin' />
                 <div className="userCt">
                     <div className="userTitle">List of Users</div>
                     { appendUsers() }

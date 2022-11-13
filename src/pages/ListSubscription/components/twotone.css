@@ -1,0 +1,125 @@
+.twotone {
+    /* border status = white (pending), green (accepted), red (rejected) */
+    --bordercolor: white;
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 12.5vw;
+    font-family: "CircularStd-Light";
+    font-size: 14px;
+    cursor: pointer;
+    color: white;
+}
+
+.circle {
+    --a: 65deg;
+    --b1: ;
+    --b2: ;
+
+    width: 100%;
+    display: inline-block;
+    border-radius: 50%;
+    border: 2px solid var(--bordercolor);
+    background: var(--b1) center/cover; 
+    position: relative;
+    overflow: hidden;
+
+    margin-bottom: 10px;
+}
+
+.circle::before {
+    content:"";
+    display:block;
+    padding-top:100%;
+    background:var(--b2) center/cover; 
+    -webkit-mask:linear-gradient(var(--a),#fff 49.8%,transparent 50%);
+    mask:linear-gradient(var(--a),#fff 49.8%,transparent 50%);
+}
+
+.circle:hover {
+    box-shadow: var(--bordercolor) 3px 3px 10px 0.5px;
+}
+
+.twotone:hover {
+    scale: 1.05;
+}
+
+.twotoneTextBold {
+    font-family: "CircularStd-Bold";
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: var(--bordercolor);
+}
+
+.twotoneTextLight {
+    font-family: "CircularStd-Light";
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.mymodal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    border: none;
+    background-color: black;
+    overflow: auto;
+    border-radius: 10px;
+    outline: none;
+    padding: 30px;
+    color: white;
+    font-family: "CircularStd-Book";
+    font-size: 16px;
+}
+
+.modalText {
+    font-family: "CircularStd-Book";
+    font-size: 16px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.modalButtons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.modalButton {
+    background-color: #1ed760;
+    border: none;
+    border-radius: 20px;
+    color: black;
+    padding: 10px 20px;
+}
+
+.myoverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+  
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+}
+  
+.ReactModal__Overlay--after-open {
+    opacity: 1;
+}
+  
+.ReactModal__Overlay--before-close {
+    opacity: 0;
+}

@@ -1,0 +1,236 @@
+.loginCt {
+    background: #fff;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 10px 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.headerImg {
+    width: 182px;
+    height: 56px;
+    display: block;
+    margin: 10px auto;
+    padding-bottom: 10px;
+}
+
+.header hr {
+    background: lightgrey;
+    width: 100vw;
+    height: 0.01px;
+    margin-bottom: 25px;
+}
+
+.login {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    row-gap: 10px;
+    font-family: "CircularStd-Black";
+    font-size: 14px;
+}
+
+.loginFail {
+    font-family: "CircularStd-Book";
+    font-size: 14px;
+    color: white;
+    background-color: red;
+    width: 100%;
+    padding: 15px 0;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginFail img {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+}
+
+.loginPhone, .loginSignupBt {
+    letter-spacing: 1px;
+    color: #6A6A6A;
+    padding: 13px 0;
+    width: 100%;
+    border: 0.5px solid #8C8C8C;
+    border-radius: 25px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.loginPhone:hover, .loginSignupBt:hover {
+    border: 0.5px solid black;
+}
+
+.loginPhone:active, .loginSignupBt:active {
+    border: 0.5px solid #8C8C8C;
+    outline: 2px solid black;
+}
+
+.loginOr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.loginOrText {
+    font-size: 12px;
+    margin: 0 15px;
+}
+
+.loginFormCt {
+    width: 100%;
+}
+
+input {
+    width: 93%;
+    border: 1px solid #8C8C8C;
+    border-radius: 5px;
+    padding: 14px;
+    margin: 10px 0;
+    font-size: 16px;
+    font-family: "CircularStd-Medium";
+    font-size: 14px;
+    color: #6A6A6A;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid black;
+}
+
+.loginFormForgot {
+    font-family: "CircularStd-Book";
+    font-size: 16px;
+    margin: 0;
+    color: black
+}
+
+.loginFormForgot:link { 
+    text-decoration: none;
+}
+
+.loginFormForgot:visited { 
+    text-decoration: none; 
+}
+
+.loginFormForgot:hover { 
+    text-decoration: underline; 
+}
+
+.loginFormForgot:active { 
+    text-decoration: underline; 
+}
+
+.loginFormBt {
+    width: 124px;
+    height: 48px;
+    background: #1ED760;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 25px;
+    font-family: "CircularStd-Black";
+    font-size: 14px;
+    color: black;
+    float: right;
+    margin: 0;
+}
+
+.loginFormBt:hover {
+    cursor: pointer;
+    outline: 2px solid #1ED760;
+}
+
+.login hr {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.loginSignupText {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 768px){
+    .headerImg {
+        width: 136.5px;
+        height: 42px;
+    }
+
+    .loginFormBt {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 480px){
+    .login {
+        width: 100%;
+    }
+
+    .loginFail,
+    .loginPhone,
+    .loginOr,
+    .loginFormCt,
+    .loginSignup {
+        width: 90%;
+    }
+}
+
+.link, .link:focus, .link:hover, .link:visited, .link:link, .link:active {
+    text-decoration: none;
+    color: #6A6A6A;
+}
+
+.mymodal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    border: none;
+    background-color: black;
+    overflow: auto;
+    border-radius: 10px;
+    outline: none;
+    padding: 20px;
+    color: white;
+    font-family: "CircularStd-Book";
+    font-size: 16px;
+}
+
+.myoverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+  
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+}
+  
+.ReactModal__Overlay--after-open {
+    opacity: 1;
+}
+  
+.ReactModal__Overlay--before-close {
+    opacity: 0;
+}
+  

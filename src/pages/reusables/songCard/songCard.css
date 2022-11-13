@@ -2,7 +2,6 @@
     background-color: #121212;
     border-radius: 10px;
     padding: 12.5px;
-    margin: 20px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -54,4 +53,21 @@
 .link, .link:focus, .link:hover, .link:visited, .link:link, .link:active {
     text-decoration: none;
     color: #B3B3B3;
+}
+
+.deleteBt {
+    /* border: 2px solid rgb(151, 0, 0); */
+    padding: 10px 0px;
+    margin-top: 2vh;
+    background-color: transparent;
+    width: 100%;
+    background-size: 200% 100%;
+    background-image: linear-gradient(to right, transparent 50%, red 50%);
+    -webkit-transition: background-position 1s ease;
+    -moz-transition: background-position 1s ease;
+    transition: background-position 1s;
+}
+
+.deleteBt:hover {
+    background-position: 100% 0;
 }

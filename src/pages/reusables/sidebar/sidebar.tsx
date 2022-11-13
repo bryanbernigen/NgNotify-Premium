@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from "react-router-dom";
 import './sidebar.css'
 
-const Sidebar = ({ creds = 'guest' }: { creds: string }) => {
+const Sidebar = ({ creds = 'guest', isAdmin = false }: { creds: string, isAdmin: boolean }) => {
     return (
         <div className="sidebar">
             <div className="sidebarTop">
@@ -12,7 +12,7 @@ const Sidebar = ({ creds = 'guest' }: { creds: string }) => {
             </div>
             <div className="sidebarMiddleWrap">
                 <div className="sidebarBottom">
-                    <Link to="/home" className='link'>
+                    <Link to={ creds === "admin" ? "/listsubscription" : "/managesong" } className='link'>
                         <div className="sidebarItems">
                             <img className="sidebarIcon" src="/icons8-home-144.png"/>
                             <span className="sidebarText">Home</span>
@@ -31,7 +31,7 @@ const Sidebar = ({ creds = 'guest' }: { creds: string }) => {
                         </div>
                     </Link>
                     {
-                        creds === "admin" ?
+                        isAdmin === true ?
                             <>
                                 <Link to="/adddata" className='link'>
                                     <div className="sidebarItems">

@@ -1,0 +1,181 @@
+body {
+    background-color: black;
+    background-image: linear-gradient(135deg, rgba(58, 13, 58, 1) 0.5%, rgba(0,0,0, 0.8) 95.53%);
+    background-attachment: fixed;
+    width: 100vw;
+}
+
+.ct {
+    width: 81vw;
+    float: right;
+    margin-left: 19vw;
+    color: white;
+}
+
+.detAlbumCt {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    padding: 20px 40px;
+}
+
+.heroCt {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 20px;
+    flex-basis: 50%;
+    width: 100%;
+}
+
+.albumPoster {
+    width: 15vw;
+    height: 15vw;
+    object-fit: cover;
+}
+
+.albumDesc {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    row-gap: 10px;
+}
+
+.albumText {
+    font-family: "CircularStd-Black";
+    font-size: 12px;
+}
+
+.albumTitle {
+    font-family: "CircularStd-Bold";
+    font-size: 96px
+}
+
+.albumInfo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 14px;
+    column-gap: 5%;
+    width: 100%;
+}
+
+.albumInfoComp {
+    width: max-content;
+}
+
+.detAlbumFuncMid {
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 20px;
+    width: 69vw;
+}
+
+.play {
+    padding: 15px;
+    border-radius: 50%;
+    background-color: #1ED760;
+    color: black;
+}
+
+.play:hover, .like:hover, .ellipsis:hover {
+    scale: 1.1;
+    cursor: pointer;
+}
+
+.like::before, .ellipsis::before {
+    padding: 15px;
+    color: #6c6c6c;
+}
+
+.detSongLyrics, .detSongSinger, .detSongAlbum {
+    padding: 0px 32px;
+    margin-bottom: 20px;
+}
+
+.detSongSinger:hover, .detSongAlbum {
+    cursor: pointer;
+}
+
+.detSongTitle {
+    font-family: "CircularStd-Bold";
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.detSongSingerTitle {
+    font-family: "CircularStd-Bold";
+    font-size: 12px;
+}
+
+.detSongSingerName {
+    font-family: "CircularStd-Book";
+    font-size: 16px;
+}
+
+.detSongSinger, .detSongAlbum {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 1vw;
+
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0,0,0, 0.5);
+    border-radius: 10px;
+}
+
+.detSongSinger:hover, .detSongAlbum:hover {
+    background-color: rgba(52, 52, 52, 0.8);
+    scale: 1.01;
+}
+
+.detSongSingerCt {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    row-gap: 1vh;
+}
+
+.detSongSingerName {
+    font-family: "CircularStd-Bold";
+    font-size: 16px;
+}
+
+.musicAlbum {
+    height: 5vh;
+    border-radius: 5px;
+    font-family: "CircularStd-Bold";
+    font-size: 16px;
+}
+
+.songLyrics {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.musicPlayerPoster {
+    width: 5vw;
+    height: 5vw;
+    object-fit: cover;
+    border-radius: 10px;
+}

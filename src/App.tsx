@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      navigate('/home')
+      navigate('/login')
     }, 3000)
   }, []);
 
@@ -18,7 +18,7 @@ function App() {
       <Link to="/home" className="bigText">
         <img src="/Spotify_Logo_CMYK_Green.png" />
       </Link>
-      <div className="redirect">Redirecting you to Home Page...</div>
+      <div className="redirect">Redirecting you to Login Page...</div>
     </div>
   )
 }

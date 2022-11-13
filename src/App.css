@@ -1,5 +1,5 @@
 .indexCt {
-  background-color: black;
+  background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -15,7 +15,7 @@
 }
 
 .redirect {
-  color: white;
+  color: black;
   font-family: "CircularStd-Black";
   font-size: 16px;
 }

@@ -1,0 +1,61 @@
+.ct {
+    width: 81vw;
+    float: right;
+    margin-left: 19vw;
+}
+
+form {
+    font-family: "CircularStd-Light";
+    width: 36vw;
+}
+
+.formLabel {
+    font-family: "CircularStd-Medium";
+    font-size: 14px;
+    float: left;
+}
+
+.formInputText {
+    width: 93%;
+    border: 3px solid #8C8C8C;
+    border-radius: 5px;
+    padding: 14px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-family: "CircularStd-Light";
+    font-size: 14px;
+    color: #6A6A6A;
+}
+
+.formInputText:hover {
+    border: 3px solid #117a37;
+}
+
+.formInputText:focus, .formInputText:defined {
+    color: black;
+}
+
+.formBt {
+    background: #1ED760;
+    width: 124px;
+    height: 48px;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 25px;
+    font-family: "CircularStd-Black";
+    font-size: 14px;
+    color: black;
+    margin: 0;
+    margin-bottom: 5vh;
+}
+
+.formBt:hover {
+    cursor: pointer;
+    outline: 2px solid #1ED760;
+}
+
+option {
+    font-family: "CircularStd-Light";
+    font-size: 14px;
+    color: #6A6A6A;
+}
