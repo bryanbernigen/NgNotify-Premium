@@ -1,3 +1,7 @@
+body {
+    background: white;
+}
+
 .loginCt {
     background: #fff;
     margin: 0;
@@ -9,6 +13,7 @@
     justify-content: center;
     align-items: center;
     align-content: center;
+    text-align: center;
 }
 
 .headerImg {
@@ -26,7 +31,14 @@
     margin-bottom: 25px;
 }
 
-.login {
+.loginPrompt {
+    font-family: "CircularStd-Bold";
+    font-size: 14px;
+    margin-bottom: 20px;
+    width: 450px;
+}
+
+/* .login {
     width: 450px;
     display: flex;
     flex-direction: column;
@@ -36,14 +48,14 @@
     row-gap: 10px;
     font-family: "CircularStd-Black";
     font-size: 14px;
-}
+} */
 
 .loginFail {
     font-family: "CircularStd-Book";
     font-size: 14px;
     color: white;
     background-color: red;
-    width: 100%;
+    width: 450px;
     padding: 15px 0;
     margin-bottom: 10px;
     display: flex;
@@ -63,11 +75,14 @@
     letter-spacing: 1px;
     color: #6A6A6A;
     padding: 13px 0;
-    width: 100%;
+    width: 450px;
     border: 0.5px solid #8C8C8C;
     border-radius: 25px;
     text-align: center;
     text-decoration: none;
+    margin-bottom: 20px;
+    font-family: "CircularStd-Black";
+    font-size: 14px;
 }
 
 .loginPhone:hover, .loginSignupBt:hover {
@@ -84,7 +99,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 450px;
+    margin-bottom: 20px;
 }
 
 .loginOrText {
@@ -92,32 +108,56 @@
     margin: 0 15px;
 }
 
-.loginFormCt {
+.loginOrHr {
     width: 100%;
 }
 
-input {
+.loginFormCt {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    row-gap: 10px;
+}
+
+form {
+    width: 450px;
+}
+
+.loginFormLabel {
+    font-family: "CircularStd-Black";
+    font-size: 14px;
+    float: left;
+}
+
+.loginFormInput {
     width: 93%;
     border: 1px solid #8C8C8C;
     border-radius: 5px;
     padding: 14px;
-    margin: 10px 0;
+    margin-top: 8px;
+    margin-bottom: 16px;
     font-size: 16px;
     font-family: "CircularStd-Medium";
     font-size: 14px;
     color: #6A6A6A;
 }
 
-input:focus {
+.loginFormInput:focus {
     outline: none;
     border: 1px solid black;
 }
 
 .loginFormForgot {
-    font-family: "CircularStd-Book";
+    font-family: "CircularStd-Light";
     font-size: 16px;
-    margin: 0;
-    color: black
+    margin-bottom: 16px;
+    color: black;
+    float: left;
+    width: 100%;
+    text-align: left;
 }
 
 .loginFormForgot:link { 
@@ -147,7 +187,7 @@ input:focus {
     font-size: 14px;
     color: black;
     float: right;
-    margin: 0;
+    margin-bottom: 20px;
 }
 
 .loginFormBt:hover {
@@ -155,14 +195,16 @@ input:focus {
     outline: 2px solid #1ED760;
 }
 
-.login hr {
-    width: 100%;
-    margin: 20px 0;
+.hrbawahbutton {
+    width: 450px;
+    margin-top: 12px;
+    margin-bottom: 40px;
 }
 
 .loginSignupText {
     font-size: 18px;
     margin-bottom: 10px;
+    font-family: "CircularStd-Bold";
 }
 
 @media only screen and (max-width: 768px){

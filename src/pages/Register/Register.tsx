@@ -135,7 +135,7 @@ const Register = () => {
                         <img src="/icons8-warning-67.png" />
                         <div className="incorrectUnamePass">Register failed, try again.</div>
                     </div> 
-                :   <div></div>
+                :   <></>
             }
             <div className="registerFormCt">
                 <form method="POST">
