@@ -15,7 +15,7 @@ RUN npm install
 # # Bundle app source
 COPY . .
 
-EXPOSE 3000
+EXPOSE 3010
 
 RUN mv /usr/src/app/node_modules/.vite/deps_temp /usr/src/app/node_modules/.vite/deps
 
