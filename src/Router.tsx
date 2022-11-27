@@ -9,6 +9,7 @@ import Register from "./pages/Register/Register";
 import ListSubscription from "./pages/ListSubscription/ListSubscription";
 import AddSong from "./pages/AddSong/AddSong";
 import EditSong from "./pages/EditSong/EditSong";
+import UserSubscribe from "./pages/UserSubscribe/UserSubscribe";
 
 let pages = [
   {
@@ -46,6 +47,10 @@ let pages = [
   {
     path: "/editsong",
     element: <EditSong />,
+  },
+  {
+    path: "/usersubscribe",
+    element: <UserSubscribe />,
   }
 ];
 

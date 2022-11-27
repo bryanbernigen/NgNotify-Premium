@@ -32,8 +32,8 @@
 }
 
 .pageCurr {
-    background-color: #282828;
     color: white;
+    padding: 2px;
 }
 
 .paginationCt {
