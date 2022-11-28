@@ -153,7 +153,7 @@ const UserSubscribe = () => {
     }
 
     return (
-        <div>
+        <div className='body'>
             <Sidebar creds={uname} isAdmin={true} />
             <div className='ct'>
                 <Topbar creds={uname} isAdmin={true} />

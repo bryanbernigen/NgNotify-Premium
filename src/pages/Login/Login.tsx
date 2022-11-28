@@ -11,48 +11,67 @@ const Login = () => {
     const navigate = useNavigate();
     const [login, setLogin] = useState(false);
 
-    const checkLogin = () => {
-        // setup request
-        // let bodyContent = JSON.stringify({
-        //     userToken: localStorage.getItem("userToken"),
-        // });
+    const getCreds = async() => {
+        const response = await fetch("http://localhost:3000/user", {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+        });
+        
+        const data = await response.json();
 
-        // make request
-        fetch("http://localhost:8000/api/auth/login", {
+        if (!response.ok) {
+            console.log("get user fail");
+            setLogin(false);
+        }
+        else {
+            console.log("get user success");
+            setLogin(true);
+            console.log(data['user']);
+            localStorage.setItem("user", data['user']);
+            if (data['user'].isAdmin) {
+                console.log("admin");
+                navigate('/listsubscription');
+            }
+            else {
+                console.log("singer");
+                navigate('/managesong');
+            }
+        }
+    };
+
+    const checkLogin = async() => {
+        const response = await fetch("http://localhost:3000/auth/login/", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                email: email,
+                emailuser: email,
                 password: password,
             }),
-        })
-            .then(res => res.json())
-            .then(data => {
-                // use request
-                console.log(data);
-                if (data['status']) {
-                    console.log("login success");
-                    setLogin(true);
-                    if (data['data'].isAdmin) {
-                        navigate('/listsubscription');
-                    } else {
-                        navigate('/managesong');
-                    }
-                }
-                else {
-                    console.log("login fail");
-                    setLogin(false);
-                }
-            })
-            .catch(err => console.log("error:", err));
+        });
+        
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.log("login fail");
+        }
+        else {
+            console.log("login success");
+            console.log(data);
+            localStorage.setItem("accessToken", data['accessToken']);
+            getCreds();
+        }
     };
 
     function closeModal() {
         setOpenModal(false);
-    }
+    };
 
     return (
         <div className="loginCt">
@@ -64,11 +83,11 @@ const Login = () => {
                 <div className="loginPrompt">To continue, log in to Spotify.</div>
                 {
                     login ? 
-                        <div className="loginFail">
+                        <></>
+                    :   <div className="loginFail">
                             <img src="/icons8-warning-67.png" />
                             <div className="incorrectUnamePass">Incorrect username or password.</div>
-                        </div> 
-                    :   <></>
+                        </div>
                 }
                 <a className="loginPhone link" href="">CONTINUE WITH PHONE NUMBER</a>
                 <div className="loginOr">

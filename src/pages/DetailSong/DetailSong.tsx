@@ -85,7 +85,7 @@ const DetailSong = () => {
     }, []);
 
     return (
-        <div>
+        <div className='body'>
             <Sidebar creds={uname} isAdmin={false} />
             <div className='ct'>
                 <Topbar creds={uname} isAdmin={false} />
