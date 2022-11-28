@@ -1,4 +1,4 @@
-body {
+html {
     background: white;
 }
 
@@ -38,7 +38,7 @@ body {
     width: 450px;
 }
 
-/* .login {
+.login {
     width: 450px;
     display: flex;
     flex-direction: column;
@@ -48,7 +48,7 @@ body {
     row-gap: 10px;
     font-family: "CircularStd-Black";
     font-size: 14px;
-} */
+}
 
 .loginFail {
     font-family: "CircularStd-Book";
@@ -122,7 +122,7 @@ body {
     row-gap: 10px;
 }
 
-form {
+.form {
     width: 450px;
 }
 
