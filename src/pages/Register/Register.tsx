@@ -6,6 +6,7 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [confirmEmail, setConfirmEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
     const [username, setUsername] = useState("");
     const [birthdate, setBirthdate] = useState<Date>(new Date());
     const [gender, setGender] = useState("");
@@ -87,38 +88,64 @@ const Register = () => {
             .catch(err => console.log("error:", err));
     }
 
-    function checkRegister(){
-        // setup request
-        let bodyContent = JSON.stringify({
-            email: email,
-            password: password,
-            username: username,
-        });
-
-        // make request
-
-        fetch("http://localhost:8000/api/register", {
+    const checkRegister = async() =>{
+        const response = await fetch("http://localhost:3000/auth/register/", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: bodyContent
-        })
-            .then(res => res.json())
-            .then(data => {
-                // use request
-                console.log(data);
-                if(data['status']){
-                    setRegistered(true);
-                    navigate("/home");
-                }
-                else{
-                    setRegistered(false);
-                    console.log("fail to register");
-                }
-            })
-            .catch(err => console.log("error:", err));
+            body: JSON.stringify({
+                email: email,
+                password: password,
+                username: username,
+                name: name,
+            }),
+        });
+        
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.log("register fail");
+            setRegistered(false);
+        }
+        else {
+            console.log("register success");
+            console.log(data);
+            setRegistered(true);
+        }
+
+        // setup request
+        // let bodyContent = JSON.stringify({
+        //     email: email,
+        //     password: password,
+        //     username: username,
+        // });
+
+        // make request
+
+        // fetch("http://localhost:8000/api/register", {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Accept': 'application/json'
+        //     },
+        //     body: bodyContent
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         // use request
+        //         console.log(data);
+        //         if(data['status']){
+        //             setRegistered(true);
+        //             navigate("/home");
+        //         }
+        //         else{
+        //             setRegistered(false);
+        //             console.log("fail to register");
+        //         }
+        //     })
+        //     .catch(err => console.log("error:", err));
     }
 
 
@@ -193,6 +220,9 @@ const Register = () => {
                     {/* PASSWORD */}
                     <label className="registerFormLabel" htmlFor="password">Create a Password</label><br />
                     <input className="registerFormInput" type="password" id="password" name="password" placeholder="Create a Password." required onChange={(e) => setPassword(e.target.value)}/><br /><br />
+                    {/* NAME */}
+                    <label className="registerFormLabel" htmlFor="name">What is your name?</label><br />
+                    <input className="registerFormInput" type="text" id="name" name="name" placeholder="Enter your name." required onChange={(e) => setName(e.target.value)}/><br /><br />
                     {/* USERNAME */}
                     <label className="registerFormLabel" htmlFor="uname">What should we call you?</label><br />
                     {

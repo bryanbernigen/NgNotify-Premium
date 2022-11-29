@@ -5,133 +5,49 @@ import SongCard from '../reusables/songCard/songCard';
 import Pagination from '../reusables/pagination/pagination';
 import Footbar from '../reusables/footbar/footbar';
 import { FaPlus, FaEdit } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './ManageSong.css'
 
 const ManageSong = () => {
     const [uname, setUname] = useState("guest");
+    const [isAdmin, setIsAdmin] = useState(false);
     const dataPerPage = 10;
     let totalPage = 0;
     const [currentPage, setCurrentPage] = useState(1);
-    const [songs, setSongs] = useState<any[]>([{
-        "Judul": "Anti fragile",
-        "Penyanyi": "Le Sserafim",
-        "Tanggal_terbit": "10/17/2022",
-        "Genre": "Pop",
-        "Duration": 232,
-        "Audio_path": "https://www.youtube.com/watch?v=pyf8cbqyfPs",
-        "Image_path": "/sample-song-image.jpg",
-        "album_id": 1,
-        "song_id": 1,
-    },
-    {
-        "Judul": "Anti fragile2",
-        "Penyanyi": "Le Sserafim",
-        "Tanggal_terbit": "10/17/2022",
-        "Genre": "Pop",
-        "Duration": 232,
-        "Audio_path": "https://www.youtube.com/watch?v=pyf8cbqyfPs",
-        "Image_path": "/sample-song-image.jpg",
-        "album_id": 1,
-        "song_id": 2,
-    },
-    {
-        "Judul": "Anti fragile3",
-        "Penyanyi": "Le Sserafim",
-        "Tanggal_terbit": "10/17/2022",
-        "Genre": "Pop",
-        "Duration": 232,
-        "Audio_path": "https://www.youtube.com/watch?v=pyf8cbqyfPs",
-        "Image_path": "/sample-song-image.jpg",
-        "album_id": 1,
-        "song_id": 3,
-    },
-    {
-        "Judul": "Anti fragile4",
-        "Penyanyi": "Le Sserafim",
-        "Tanggal_terbit": "10/17/2022",
-        "Genre": "Pop",
-        "Duration": 232,
-        "Audio_path": "https://www.youtube.com/watch?v=pyf8cbqyfPs",
-        "Image_path": "/sample-song-image.jpg",
-        "album_id": 1,
-        "song_id": 4,
-    },
-    {
-        "Judul": "Anti fragile5",
-        "Penyanyi": "Le Sserafim",
-        "Tanggal_terbit": "10/17/2022",
-        "Genre": "Pop",
-        "Duration": 232,
-        "Audio_path": "https://www.youtube.com/watch?v=pyf8cbqyfPs",
-        "Image_path": "/sample-song-image.jpg",
-        "album_id": 1,
-        "song_id": 5,
-    },
-    {
-        "Judul": "Anti fragile6",
-        "Penyanyi": "Le Sserafim",
-        "Tanggal_terbit": "10/17/2022",
-        "Genre": "Pop",
-        "Duration": 232,
-        "Audio_path": "https://www.youtube.com/watch?v=pyf8cbqyfPs",
-        "Image_path": "/sample-song-image.jpg",
-        "album_id": 1,
-        "song_id": 6,
-    },
-    {
-        "Judul": "Anti fragile7",
-        "Penyanyi": "Le Sserafim",
-        "Tanggal_terbit": "10/17/2022",
-        "Genre": "Pop",
-        "Duration": 232,
-        "Audio_path": "https://www.youtube.com/watch?v=pyf8cbqyfPs",
-        "Image_path": "/sample-song-image.jpg",
-        "album_id": 1,
-        "song_id": 7,
-    }]);
+    const [songs, setSongs] = useState<any[]>([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("http://localhost:8000/api/auth/info", {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-        })
-            .then(res => res.json())
-            .then(data => {
-                // use request
-                console.log(data);
-                if (data['status']) {
-                    setUname(data['data'].username);
-                }
-                else {
-                    setUname("guest");
-                }
-            })
-            .catch(err => console.log("error:", err));
-
-        // setup request
-        // let bodyContent = JSON.stringify({
-        //     userToken: localStorage.getItem("userToken"),
-        // });
+        setUname(localStorage.getItem("username") || "guest");
+        let admin = localStorage.getItem("isAdmin") === "true" ? true : false;
+        setIsAdmin(admin);
 
         // make request
-        fetch("http://localhost:8000/api/songapi/querysong/"+(currentPage-1)+"/10/", {
-            method: 'POST',
+        fetch("http://localhost:3000/songs/", {
+            method: 'GET',
             headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
         })
-            .then(res => res.json())
+            .then(function(res) {
+                if(res.ok) {
+                    console.log("response ok");
+                    return res.json();
+                }
+                else {
+                    navigate("/login");
+                }
+                throw new Error('Network response was not ok.');
+            })
             .then(data => {
                 // use request
                 console.log("sini");
-                setSongs(data);
-                totalPage = data['data']['pages'];
-                console.log(data);
+                console.log(data.data);
+                setSongs(data.data);
+                totalPage = data.data.length;
                 console.log(totalPage);
             })
             .catch(err => console.log("error:", err));
@@ -144,15 +60,13 @@ const ManageSong = () => {
             console.log(songs[i]);
             songsEl.push(
                 <SongCard
-                    judul={songs[i].Judul}
-                    penyanyi={songs[i].Penyanyi}
-                    tanggal_terbit={new Date(songs[i].Tanggal_terbit)}
-                    genre={songs[i].Genre}
-                    duration={songs[i].Duration}
-                    audio_path={songs[i].Audio_path}
-                    image_path={songs[i].Image_path}
-                    album_id={songs[i].album_id}
+                    judul={songs[i].judul}
+                    penyanyi={songs[i].namapenyanyi}
+                    audio_path={songs[i].audio_path}
+                    image_path={songs[i].image_path}
+                    penyanyi_id={songs[i].penyanyi_id}
                     song_id={songs[i].song_id}
+                    set_song ={setSongs}
                 />
             );
         }
@@ -161,9 +75,9 @@ const ManageSong = () => {
     
     return (
         <div className='wrapper'>
-            <Sidebar creds={uname} isAdmin={false} />
+            <Sidebar creds={uname} isAdmin={isAdmin} />
             <div className='ct'>
-                <Topbar creds={uname} isAdmin={false} />
+                <Topbar creds={uname} isAdmin={isAdmin} />
                 <div className="userCt">
                     <div className="userTitle">Manage Songs</div>
                     <div className="manipButtons">

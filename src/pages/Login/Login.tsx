@@ -31,7 +31,12 @@ const Login = () => {
             console.log("get user success");
             setLogin(true);
             console.log(data['user']);
-            localStorage.setItem("user", data['user']);
+            localStorage.setItem("user_id", data['user'].user_id);
+            localStorage.setItem("username", data['user'].username);
+            localStorage.setItem("email", data['user'].email);
+            localStorage.setItem("name", data['user'].name);
+            localStorage.setItem("isAdmin", data['user'].isAdmin);
+            console.log(localStorage.getItem("isAdmin"));
             if (data['user'].isAdmin) {
                 console.log("admin");
                 navigate('/listsubscription');

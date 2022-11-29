@@ -10,19 +10,21 @@ const DetailSong = () => {
     const location = useLocation();
     const judul = location.state.judul;
     const penyanyi = location.state.penyanyi;
-    const tanggal_terbit = location.state.tanggal_terbit;
-    const genre = location.state.genre;
-    const duration = location.state.duration;
     const audio_path = location.state.audio_path;
     const image_path = location.state.image_path;
-    const album_id = location.state.album_id;
+    const penyanyi_id = location.state.penyanyi_id;
     const song_id = location.state.song_id;
 
     const [uname, setUname] = useState("guest");
-    const [lyrics, setLyrics] = useState([]);
-    const [albumName, setAlbumName] = useState("");
+    const [isAdmin, setIsAdmin] = useState(false);
+    // const [lyrics, setLyrics] = useState([]);
+    // const [albumName, setAlbumName] = useState("");
 
     useEffect(() => {
+        setUname(localStorage.getItem("username") || "guest");
+        let admin = localStorage.getItem("isAdmin") === "true" ? true : false;
+        setIsAdmin(admin);
+
         fetch("http://localhost:8000/api/auth/info", {
             method: 'GET',
             headers: {
@@ -43,45 +45,45 @@ const DetailSong = () => {
             })
             .catch(err => console.log("error:", err));
 
-        fetch("http://localhost:8000/api/songapi/getsong?song_id="+song_id, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-        })
-            .then(res => res.json())
-            .then(data => {
-                // use request
-                console.log(data);
-                if (data['status']) {
-                    setLyrics(data['data'].lyric);
-                }
-                else {
-                    setLyrics([]);
-                }
-            })
-            .catch(err => console.log("error:", err));
+        // fetch("http://localhost:8000/api/songapi/getsong?song_id="+song_id, {
+        //     method: 'GET',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Accept': 'application/json'
+        //     },
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         // use request
+        //         console.log(data);
+        //         if (data['status']) {
+        //             setLyrics(data['data'].lyric);
+        //         }
+        //         else {
+        //             setLyrics([]);
+        //         }
+        //     })
+        //     .catch(err => console.log("error:", err));
 
-        fetch("http://localhost:8000/api/albumapi/getalbum?album_id="+album_id, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-        })
-            .then(res => res.json())
-            .then(data => {
-                // use request
-                console.log(data);
-                if (data['status']) {
-                    setAlbumName(data['data'].judul);
-                }
-                else {
-                    setAlbumName(judul);
-                }
-            })
-            .catch(err => console.log("error:", err));
+        // fetch("http://localhost:8000/api/albumapi/getalbum?album_id="+album_id, {
+        //     method: 'GET',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Accept': 'application/json'
+        //     },
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         // use request
+        //         console.log(data);
+        //         if (data['status']) {
+        //             setAlbumName(data['data'].judul);
+        //         }
+        //         else {
+        //             setAlbumName(judul);
+        //         }
+        //     })
+        //     .catch(err => console.log("error:", err));
     }, []);
 
     return (
@@ -97,12 +99,12 @@ const DetailSong = () => {
                             <div className="albumTitle">{judul}</div>
                             <div className="albumInfo">
                                 <span className="albumInfoComp">{penyanyi}</span>
-                                <FaCircle />
+                                {/* <FaCircle />
                                 <span className="albumInfoComp">{tanggal_terbit.getFullYear()}</span>
                                 <FaCircle />
                                 <span className="albumInfoComp">{Math.ceil(duration/60)}:{duration%60}</span>
                                 <FaCircle />
-                                <span className="albumInfoComp">{genre}</span>
+                                <span className="albumInfoComp">{genre}</span> */}
                             </div>
                         </div>
                     </div>
@@ -113,14 +115,14 @@ const DetailSong = () => {
                             <FaEllipsisH className='ellipsis'/>
                         </div>
                     </div>
-                    <div className="detSongLyrics">
+                    {/* <div className="detSongLyrics">
                         <div className="detSongTitle">Lyrics</div>
                         <div className="songLyrics">{
                             lyrics.map((lyric, index) => {
                                 return <div key={index}>{lyric}</div>
                             })
                         }</div>
-                    </div>
+                    </div> */}
                     <div className="detSongSinger">
                         <img className="musicPlayerPoster" src={image_path} />
                         <div className="detSongSingerCt">
@@ -128,13 +130,13 @@ const DetailSong = () => {
                             <div className="musicPlayerSinger detSongSingerName">{penyanyi}</div>
                         </div>
                     </div>
-                    <div className="detSongAlbum">
+                    {/* <div className="detSongAlbum">
                         <img className="musicPlayerPoster" src={image_path} />
                         <div className="detSongSingerCt">
                             <div className="detSongSingerTitle">from the Album</div>
                             <div className="musicAlbum">{albumName}</div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <Footbar/>
             </div>
