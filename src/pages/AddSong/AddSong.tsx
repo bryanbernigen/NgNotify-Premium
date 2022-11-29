@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import Sidebar from '../reusables/sidebar/sidebar';
 import Topbar from '../reusables/topbar/topbar';
 import Footbar from '../reusables/footbar/footbar';
-import { useNavigate } from 'react-router-dom';
 import './AddSong.css';
 
 const AddSong = () => {
@@ -14,7 +13,6 @@ const AddSong = () => {
     const [audioPath, setAudioPath] = useState("");
     const [imagePath, setImagePath] = useState("");
     const [uploadedImg, setUploadedImg] = useState("");
-    const navigate = useNavigate();
 
     const addASong = async() => {
         const response = await fetch("http://localhost:3000/songs/add", {
@@ -63,7 +61,7 @@ const AddSong = () => {
                 <Topbar creds={uname} isAdmin={isAdmin} />
                 <div className="userCt">
                     <div className="userTitle">Add Song</div>
-                    <form className="form">
+                    <form className="formAdd">
                         <label className="formLabel" htmlFor="songtitle">Song Title</label><br />
                         <input className="formInputText" type="text" name="songtitle" placeholder="Pink Venom" onChange={(e) => setSongTitle(e.target.value)}/><br />
                         <br />
@@ -74,10 +72,10 @@ const AddSong = () => {
                         <input className="formInputText" type="number" name="duration" placeholder="0" disabled /><br />
                         <br />
                         <label className="formLabel" htmlFor="audioupload1">Audio Path<br /></label>
-                        <input className="formInputText" type="text" name="audiopath" onChange={(e) => {autoEditDuration({audio_path: e.target.value})}} /><br />
+                        <input className="formInputText" type="text" name="audiopath" onChange={(e) => {autoEditDuration({audio_path: e.target.value}); setAudioPath(e.target.value)}} /><br />
                         <br />
                         <label className="formLabel" htmlFor="imageupload3">Image Path<br /></label>
-                        <input className="formInputText" type="text" name="imagepath" onChange={(e) => setUploadedImg(e.target.value)} /><br /><br />
+                        <input className="formInputText" type="text" name="imagepath" onChange={(e) => {setUploadedImg(e.target.value); setImagePath(e.target.value)}} /><br /><br />
                         <img className="clippedImage" src={uploadedImg}></img>
                         <br /><br /><br />
 
