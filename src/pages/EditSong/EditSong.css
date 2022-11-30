@@ -44,7 +44,7 @@
     border: 3px solid #117a37;
 }
 
-.formInputText:focus, .formInputText:defined {
+.formInputText:focus {
     color: black;
 }
 

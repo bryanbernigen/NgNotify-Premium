@@ -51,13 +51,14 @@ const EditSong = () => {
         console.log("autofill");
         console.log(songs);
         console.log(song_id);
-        // for (let song in songs) {
-        //     if (song["song_id"] === song_id) {
-        //         setSongTitle(song.song_title);
-        //         setAudioPath(song.audio_path);
-        //         setImagePath(song.image_path);
-        //     }
-        // }
+        for (let i=0; i < songs.length; i++) {
+            if (songs[i].song_id === song_id) {
+                console.log("you")
+                setSongTitle(songs[i].song_title);
+                setAudioPath(songs[i].audio_path);
+                setImagePath(songs[i].image_path);
+            }
+        }
     }
 
     const editASong = async() => {
@@ -96,11 +97,10 @@ const EditSong = () => {
                     <div className="userTitle">Edit Song</div>
                     <form className="formEdit">
                         <label className="formLabel" htmlFor="songidInput">Song ID</label><br />
-                        <select className="formInputSelect">{song_id}
+                        <select className="formInputSelect" value={song_id}>{song_id}
                             {
                                 songs.map((song) => {
-                                    return <option className='options' value={song.song_id} key={song.song_id}
-                                        onClick={() => {setSong_id(song.song_id); autoFill({song_id: song.song_id})}}>{song.song_id + ". " + song.judul}</option>
+                                    return <option className='options' value={song.song_id} key={song.song_id} onSelect={() => {autoFill({song_id: song.song_id})}}>{song.song_id + ". " + song.judul}</option>
                                 })
                             }
                         </select>
@@ -115,7 +115,7 @@ const EditSong = () => {
                         <input className="formInputText" type="text" name="audiopath" placeholder={audioPath} onChange={(e) => {setAudioPath(e.target.value)}} /><br />
                         <br />
                         <label className="formLabel" htmlFor="imageupload3">Image Path<br /></label>
-                        <input className="formInputText" type="text" name="imagepath" value={imagePath} disabled/><br /><br /><br />
+                        <input className="formInputText" type="text" name="imagepath" placeholder={imagePath} disabled/><br /><br /><br />
                         <img className="clippedImage" src={imagePath}></img>
                         <br /><br /><br />
 
