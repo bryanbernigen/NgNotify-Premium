@@ -35,13 +35,6 @@ const Onetone = ({uname, creator_id, creator_name, creator_pic}: {uname: string,
                 ? <div className="onetoneOverlay" onClick={() => setClicked(!clicked)} style={{"--artist_pic": "url("+creator_pic+")"} as React.CSSProperties} ></div>
                 : <img className="onetoneImg" src={creator_pic} alt={creator_name} onClick={() => setClicked(!clicked)}/>
             }
-            
-            {/* <div className="onetoneCt">
-                <img className="onetoneImg" src={creator_pic} alt={creator_name} />
-                <div className="onetoneOverlay">
-                    <FaSearch className='onetoneIcon'/>
-                </div>
-            </div> */}
             <div className="onetoneName">{creator_name}</div>
         </div>
     );

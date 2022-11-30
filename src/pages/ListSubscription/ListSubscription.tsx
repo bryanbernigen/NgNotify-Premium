@@ -4,174 +4,48 @@ import Sidebar from '../reusables/sidebar/sidebar';
 import Topbar from '../reusables/topbar/topbar';
 import Twotone from './components/twotone';
 import Pagination from '../reusables/pagination/pagination';
+import './ListSubscription.css';
 
 const ListSubscription = () => {
     const [uname, setUname] = useState("guest");
+    const [name, setName] = useState("guest");
+    const [isAdmin, setIsAdmin] = useState(false);
     const dataPerPage = 10;
     let totalPage = 2;
     const [currentPage, setCurrentPage] = useState(1);
-    const [subsList, setSubsList] = useState<any[]>([{
-            "user_id": 1,
-            "user_name": "User1",
-            "user_pic": "url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Irene_Bae_at_GMP-KIX_Airport_on_January_22%2C_2020.png)",
-            "singer_id": 1,
-            "singer_name": "Singer1",
-            "singer_pic": "url(https://picsum.photos/id/1014/800/800?grayscale)",
-            "status": 0,
-        },
-        {
-            "user_id": 2,
-            "user_name": "User2",
-            "user_pic": "url(https://cdn.idntimes.com/content-images/community/2019/09/65957734-2447619898633179-2873692900906505834-n-f7a238bd572281e532df58d4c505ed19.jpg)",
-            "singer_id": 2,
-            "singer_name": "Singer2",
-            "singer_pic": "url(https://picsum.photos/id/1074/800/800)",
-            "status": 0,
-        },{
-            "user_id": 1,
-            "user_name": "User1",
-            "user_pic": "url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Irene_Bae_at_GMP-KIX_Airport_on_January_22%2C_2020.png)",
-            "singer_id": 1,
-            "singer_name": "Singer1",
-            "singer_pic": "url(https://picsum.photos/id/1014/800/800?grayscale)",
-            "status": 0,
-        },
-        {
-            "user_id": 2,
-            "user_name": "User2",
-            "user_pic": "url(https://cdn.idntimes.com/content-images/community/2019/09/65957734-2447619898633179-2873692900906505834-n-f7a238bd572281e532df58d4c505ed19.jpg)",
-            "singer_id": 2,
-            "singer_name": "Singer2",
-            "singer_pic": "url(https://picsum.photos/id/1074/800/800)",
-            "status": 0,
-        },{
-            "user_id": 1,
-            "user_name": "User1",
-            "user_pic": "url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Irene_Bae_at_GMP-KIX_Airport_on_January_22%2C_2020.png)",
-            "singer_id": 1,
-            "singer_name": "Singer1",
-            "singer_pic": "url(https://picsum.photos/id/1014/800/800?grayscale)",
-            "status": 0,
-        },
-        {
-            "user_id": 2,
-            "user_name": "User2",
-            "user_pic": "url(https://cdn.idntimes.com/content-images/community/2019/09/65957734-2447619898633179-2873692900906505834-n-f7a238bd572281e532df58d4c505ed19.jpg)",
-            "singer_id": 2,
-            "singer_name": "Singer2",
-            "singer_pic": "url(https://picsum.photos/id/1074/800/800)",
-            "status": 0,
-        },{
-            "user_id": 1,
-            "user_name": "User1",
-            "user_pic": "url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Irene_Bae_at_GMP-KIX_Airport_on_January_22%2C_2020.png)",
-            "singer_id": 1,
-            "singer_name": "Singer1",
-            "singer_pic": "url(https://picsum.photos/id/1014/800/800?grayscale)",
-            "status": 0,
-        },
-        {
-            "user_id": 2,
-            "user_name": "User2",
-            "user_pic": "url(https://cdn.idntimes.com/content-images/community/2019/09/65957734-2447619898633179-2873692900906505834-n-f7a238bd572281e532df58d4c505ed19.jpg)",
-            "singer_id": 2,
-            "singer_name": "Singer2",
-            "singer_pic": "url(https://picsum.photos/id/1074/800/800)",
-            "status": 0,
-        },{
-            "user_id": 1,
-            "user_name": "User1",
-            "user_pic": "url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Irene_Bae_at_GMP-KIX_Airport_on_January_22%2C_2020.png)",
-            "singer_id": 1,
-            "singer_name": "Singer1",
-            "singer_pic": "url(https://picsum.photos/id/1014/800/800?grayscale)",
-            "status": 0,
-        },
-        {
-            "user_id": 2,
-            "user_name": "User2",
-            "user_pic": "url(https://cdn.idntimes.com/content-images/community/2019/09/65957734-2447619898633179-2873692900906505834-n-f7a238bd572281e532df58d4c505ed19.jpg)",
-            "singer_id": 2,
-            "singer_name": "Singer2",
-            "singer_pic": "url(https://picsum.photos/id/1074/800/800)",
-            "status": 0,
-        },{
-            "user_id": 1,
-            "user_name": "User1",
-            "user_pic": "url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Irene_Bae_at_GMP-KIX_Airport_on_January_22%2C_2020.png)",
-            "singer_id": 1,
-            "singer_name": "Singer1",
-            "singer_pic": "url(https://picsum.photos/id/1014/800/800?grayscale)",
-            "status": 0,
-        },
-        {
-            "user_id": 2,
-            "user_name": "User2",
-            "user_pic": "url(https://cdn.idntimes.com/content-images/community/2019/09/65957734-2447619898633179-2873692900906505834-n-f7a238bd572281e532df58d4c505ed19.jpg)",
-            "singer_id": 2,
-            "singer_name": "Singer2",
-            "singer_pic": "url(https://picsum.photos/id/1074/800/800)",
-            "status": 0,
-        },{
-            "user_id": 1,
-            "user_name": "User1",
-            "user_pic": "url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Irene_Bae_at_GMP-KIX_Airport_on_January_22%2C_2020.png)",
-            "singer_id": 1,
-            "singer_name": "Singer1",
-            "singer_pic": "url(https://picsum.photos/id/1014/800/800?grayscale)",
-            "status": 0,
-        },
-        {
-            "user_id": 2,
-            "user_name": "User2",
-            "user_pic": "url(https://cdn.idntimes.com/content-images/community/2019/09/65957734-2447619898633179-2873692900906505834-n-f7a238bd572281e532df58d4c505ed19.jpg)",
-            "singer_id": 2,
-            "singer_name": "Singer2",
-            "singer_pic": "url(https://picsum.photos/id/1074/800/800)",
-            "status": 0,
-        },
-    ]);
+    const [subsList, setSubsList] = useState<any[]>([]);
 
     useEffect(() => {
-        fetch("http://localhost:8000/api/auth/info", {
+        setUname(localStorage.getItem("username") || "guest");
+        setName(localStorage.getItem("name") || "guest");
+        let admin = localStorage.getItem("isAdmin") === "true" ? true : false;
+        setIsAdmin(admin);
+        
+        fetch("http://localhost:3000/songs/", {
             method: 'GET',
             headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
         })
-            .then(res => res.json())
+            .then(function(res) {
+                if(res.ok) {
+                    console.log("response ok");
+                    return res.json();
+                }
+                // else {
+                //     navigate("/login");
+                // }
+                throw new Error('Network response was not ok.');
+            })
             .then(data => {
                 // use request
-                console.log(data);
-                if (data['status']) {
-                    setUname(data['data'].username);
-                }
-                else {
-                    setUname("guest");
-                }
+                console.log("sini");
+                console.log(data.subsList);
+                setSubsList(data.subsList);
             })
             .catch(err => console.log("error:", err));
-        // setup request
-        // let bodyContent = JSON.stringify({
-        //     userToken: localStorage.getItem("userToken"),
-        // });
-
-        // make request
-        // fetch(, {
-        //     method: 'GET',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json'
-        //     },
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         // use request
-        //         console.log(data);
-        //         setSubsList(data);
-        //     })
-        //     .catch(err => console.log("error:", err));
     }, []);
 
     function appendSubscriptions() {
@@ -197,7 +71,7 @@ const ListSubscription = () => {
     }
 
     return (
-        <div className='body'>
+        <div className='wrapper'>
             <Sidebar creds={uname} isAdmin={true} />
             <div className='ct'>
                 <Topbar creds={uname} isAdmin={true} />
