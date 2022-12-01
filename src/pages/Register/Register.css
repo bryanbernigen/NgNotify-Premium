@@ -217,6 +217,12 @@ input[type="checkbox"] {
     outline: 2px solid #1ED760;
 }
 
+.clippedImage {
+    width: 5vw;
+    height: 5vw;
+    object-fit: cover;
+}
+
 @media only screen and (max-width: 992px){
     .headerImg {
         width: 87.75px;

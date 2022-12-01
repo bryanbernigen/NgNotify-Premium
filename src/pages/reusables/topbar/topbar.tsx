@@ -12,22 +12,11 @@ const Topbar = ({creds = "guest", isAdmin = false}: {creds: string, isAdmin: boo
             navigate('/login');
         } else {
             // logout
-            fetch("http://localhost:8000/api/auth/logout", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-            })
-                .then(res => res.json())
-                .then(data => {
-                    // use request
-                    if (data['data']['status']) {
-                        console.log("logout success");
-                        navigate('/login');
-                    }
-                })
-                .catch(err => console.log("error:", err));
+            localStorage.removeItem("accessToken");
+            localStorage.removeItem("username");
+            localStorage.removeItem("name");
+            localStorage.removeItem("isAdmin");
+            navigate('/login');
         }
     }
 

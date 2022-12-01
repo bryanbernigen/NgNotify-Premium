@@ -1,0 +1,114 @@
+.row {
+    --bgcolor: rgba(255, 255, 255, 0.5);
+
+    background-color: var(--bgcolor);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 70vw;
+    min-height: 5vh;
+
+    font-family: "CircularStd-Light";
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.row:hover {
+    scale: 1.02;
+    transition: 0.3s;
+    border: rgba(255, 255, 255, 0.75);
+}
+
+.rowTextBold {
+    font-family: "CircularStd-Bold";
+    font-size: 16px;
+    /* margin-bottom: 5px; */
+    color: var(--bordercolor);
+}
+
+.rowTextLight {
+    font-family: "CircularStd-Light";
+    font-size: 12px;
+    /* margin-bottom: 5px; */
+    color: white;
+}
+
+.no1 {
+    width: 5%;
+    text-align: center;
+}
+
+.no2 {
+    width: 45%;
+}
+
+.no3 {
+    width: 50%;
+}
+
+.mymodal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    border: none;
+    background-color: black;
+    overflow: auto;
+    border-radius: 10px;
+    outline: none;
+    padding: 30px;
+    color: white;
+    font-family: "CircularStd-Book";
+    font-size: 16px;
+}
+
+.modalText {
+    font-family: "CircularStd-Book";
+    font-size: 16px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.modalButtons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.modalButton {
+    background-color: #1ed760;
+    border: none;
+    border-radius: 20px;
+    color: black;
+    padding: 10px 20px;
+}
+
+.myoverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+  
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+}
+  
+.ReactModal__Overlay--after-open {
+    opacity: 1;
+}
+  
+.ReactModal__Overlay--before-close {
+    opacity: 0;
+}

@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import Footbar from '../reusables/footbar/footbar';
 import Sidebar from '../reusables/sidebar/sidebar';
 import Topbar from '../reusables/topbar/topbar';
-import Twotone from './components/twotone';
 import Pagination from '../reusables/pagination/pagination';
 import './ListSubscription.css';
+import Row from './components/row/row';
 
 const ListSubscription = () => {
     const [uname, setUname] = useState("guest");
@@ -21,7 +21,7 @@ const ListSubscription = () => {
         let admin = localStorage.getItem("isAdmin") === "true" ? true : false;
         setIsAdmin(admin);
         
-        fetch("http://localhost:3000/songs/", {
+        fetch("http://localhost:3000/subscription/", {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),
@@ -50,21 +50,25 @@ const ListSubscription = () => {
 
     function appendSubscriptions() {
         let subsEl : any = [];
+        subsEl.push (
+            <div className='header' style={{"--bgcolor": "rgba(0, 0, 0, 0.3)" } as React.CSSProperties} >
+                <div className='rowTextLight no1'>#</div>
+                <div className='rowTextBold no2'>Username</div>
+                <div className='rowTextBold no3'>Singer</div>
+            </div>
+        );
         for (let i = 0; i < subsList.length; i++) {
             console.log("ini subs nya", i);
             console.log(subsList[i]);
             subsEl.push(
-                <>
-                    <Twotone
-                        picUser={subsList[i].user_pic}
-                        picSinger={subsList[i].singer_pic}
-                        nameUser={subsList[i].user_name}
-                        nameSinger={subsList[i].singer_name}
-                        status={subsList[i].status}
-                        userID={subsList[i].user_id}
-                        singerID={subsList[i].singer_id}
-                    />
-                </>
+                <Row
+                    nameUser = {subsList[i].user_name}
+                    nameSinger = {subsList[i].singer_name}
+                    status = {subsList[i].status}
+                    userID = {subsList[i].user_id}
+                    singerID = {subsList[i].singer_id}
+                    num = {i}
+                />
             );
         }
         return subsEl;
@@ -72,12 +76,12 @@ const ListSubscription = () => {
 
     return (
         <div className='wrapper'>
-            <Sidebar creds={uname} isAdmin={true} />
+            <Sidebar creds={uname} isAdmin={isAdmin} />
             <div className='ct'>
-                <Topbar creds={uname} isAdmin={true} />
+                <Topbar creds={uname} isAdmin={isAdmin} />
                 <div className="userCt">
                     <div className="userTitle">Subscriptions</div>
-                    <div className="homeCt">
+                    <div className="listCt">
                         { appendSubscriptions() }
                     </div>
                     <Pagination totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />

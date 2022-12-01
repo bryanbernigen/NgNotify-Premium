@@ -8,6 +8,7 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [username, setUsername] = useState("");
+    const [imagePath, setImagePath] = useState("");
     const [birthdate, setBirthdate] = useState<Date>(new Date());
     const [gender, setGender] = useState("");
 
@@ -33,18 +34,16 @@ const Register = () => {
     }
 
     function checkUniqueEmail(){
-        // setup request
-        // let bodyContent = JSON.stringify({
-        //     userToken: localStorage.getItem("userToken"),
-        // });
-
         // make request
-        fetch("http://localhost:8000/api/register/checkemail?email="+email, {
-            method: 'GET',
+        fetch("http://localhost:3000/auth/uniqueemail/", {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
+            body: JSON.stringify({
+                email: email,
+            }),
         })
             .then(res => res.json())
             .then(data => {
@@ -61,18 +60,16 @@ const Register = () => {
     }
 
     function checkUniqueUsername(){
-        // setup request
-        // let bodyContent = JSON.stringify({
-        //     userToken: localStorage.getItem("userToken"),
-        // });
-
         // make request
-        fetch("http://localhost:8000/api/register/checkusername?username="+username, {
-            method: 'GET',
+        fetch("http://localhost:3000/auth/uniqueusername/", {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
+            body: JSON.stringify({
+                username: username,
+            }),
         })
             .then(res => res.json())
             .then(data => {
@@ -88,64 +85,97 @@ const Register = () => {
             .catch(err => console.log("error:", err));
     }
 
-    const checkRegister = async() =>{
-        const response = await fetch("http://localhost:3000/auth/register/", {
+    const getCreds = async() => {
+        const response = await fetch("http://localhost:3000/user", {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+        });
+        
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.log("get user fail");
+        }
+        else {
+            console.log("get user success");
+            console.log(data['user']);
+            localStorage.setItem("user_id", data['user'].user_id);
+            localStorage.setItem("username", data['user'].username);
+            localStorage.setItem("email", data['user'].email);
+            localStorage.setItem("name", data['user'].name);
+            localStorage.setItem("isAdmin", data['user'].isAdmin);
+            console.log(localStorage.getItem("isAdmin"));
+            if (data['user'].isAdmin) {
+                console.log("admin");
+                navigate('/listsubscription');
+            }
+            else {
+                console.log("singer");
+                navigate('/managesong');
+            }
+        }
+    };
+
+    const checkLogin = async() => {
+        const response = await fetch("http://localhost:3000/auth/login/", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                email: email,
+                emailuser: email,
                 password: password,
-                username: username,
-                name: name,
             }),
         });
         
         const data = await response.json();
 
         if (!response.ok) {
-            console.log("register fail");
-            setRegistered(false);
+            console.log("login fail");
         }
         else {
-            console.log("register success");
+            console.log("login success");
             console.log(data);
-            setRegistered(true);
+            localStorage.setItem("accessToken", data['accessToken']);
+            getCreds();
         }
+    };
 
-        // setup request
-        // let bodyContent = JSON.stringify({
-        //     email: email,
-        //     password: password,
-        //     username: username,
-        // });
+    const checkRegister = async() => {
+        if (email === confirmEmail && status === "true" && usernameValid === "true") {
+            const response = await fetch("http://localhost:3000/auth/register/", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                    username: username,
+                    name: name,
+                    image_path: imagePath,
+                }),
+            });
+            
+            const data = await response.json();
 
-        // make request
-
-        // fetch("http://localhost:8000/api/register", {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json'
-        //     },
-        //     body: bodyContent
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         // use request
-        //         console.log(data);
-        //         if(data['status']){
-        //             setRegistered(true);
-        //             navigate("/home");
-        //         }
-        //         else{
-        //             setRegistered(false);
-        //             console.log("fail to register");
-        //         }
-        //     })
-        //     .catch(err => console.log("error:", err));
+            if (!response.ok) {
+                console.log("register fail");
+                setRegistered(false);
+            }
+            else {
+                console.log("register success");
+                console.log(data);
+                setRegistered(true);
+                checkLogin();
+            }
+        }
     }
 
 
@@ -226,7 +256,7 @@ const Register = () => {
                     {/* USERNAME */}
                     <label className="registerFormLabel" htmlFor="uname">What should we call you?</label><br />
                     {
-                        (usernameValid && username.length > 0) ?
+                        (usernameValid === "true" && username.length > 0) ?
                             <input className="registerFormInput inputCorrect" type="text" id="uname" name="uname" placeholder="Enter a username." onInput={() => checkUsername()} onChange={(e) => setUsername(e.target.value)} />
                         :   (!usernameValid && username.length > 0) ?
                             <input className="registerFormInput inputFalse" type="text" id="uname" name="uname" placeholder="Enter a username." onInput={() => checkUsername()} onChange={(e) => setUsername(e.target.value)} />
@@ -234,12 +264,12 @@ const Register = () => {
                     }
                     <div className="invalidInput" id="invalidInput">
                     {
-                        (usernameValid && username.length > 0) ?
+                        (usernameValid === "true" && username.length > 0) ?
                             <>
                                 <img src="/icons8-checkmark-52.png" id="invalid3"/>
                                 <div className="incorrectUnamePass correctUnameInput" id="incorrect3">Username is available.</div>
                             </>
-                        :   (!usernameValid && username.length > 0) ?
+                        :   (usernameValid === "false" && username.length > 0) ?
                             <>
                                 <img src="/icons8-warning-67-red.png" id="invalid3"/>
                                 <div className="incorrectUnamePass incorrectUnameInput" id="incorrect3">Incorrect username or password.</div>
@@ -248,6 +278,10 @@ const Register = () => {
                     }
                     </div>
                     <div className="registerFormLink">This appears on your profile.</div><br /><br /><br />
+                    {/* IMAGE_PATH */}
+                    <label className="registerFormLabel" htmlFor="image">Upload your profile picture</label><br />
+                    <input className="registerFormInput" type="text" id="image" name="imagepath" accept="image/*" onChange={(e) => setImagePath(e.target.value)}/><br /><br />
+                    <img className="clippedImage" src={imagePath} /><br /><br />
                     {/* DATE OF BIRTH */}
                     <label className="registerFormLabel" htmlFor="DOB">What's your date of birth</label><br />
                     <input className="registerFormInput" type="date" id="DOB" name="DOB" placeholder="MM/DD/YYYY" onChange={(e) => setBirthdate(new Date(e.target.value))}/><br /><br />
