@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Modal from 'react-modal';
 import './row.css'
 
-const Row = ({ nameUser, nameSinger, status, userID, singerID, num }: { nameUser: string, nameSinger: string, status: number, userID: number, singerID: number, num: number }) => {
+const Row = ({ nameUser, nameSinger, status, userID, singerID, num, subsList, setSubsList }: { nameUser: string, nameSinger: string, status: number, userID: number, singerID: number, num: number, subsList: any, setSubsList: any }) => {
     const [isOpenModal, setOpenModal] = useState(false);
     function closeModal() {
         setOpenModal(false);
@@ -35,13 +35,14 @@ const Row = ({ nameUser, nameSinger, status, userID, singerID, num }: { nameUser
             .then(data => {
                 // use request
                 console.log(data);
+                setSubsList(subsList.filter((item: any) => (item.creator_id !== singer_id || item.subscriber_id !== user_id)));
             })
             .catch(err => console.log("error:", err));
     };
 
     return (
         <>
-            <div className='row' style={{"--bgcolor": status === 1 ? "rgba(30, 215, 96, 0.3)" : status === 0 ? "rgba(255, 255, 255, 0.3)" : "rgba(255, 0, 0, 0.3)"} as React.CSSProperties} onClick={() => setOpenModal(true)}>
+            <div className='row' style={{"--bgcolor": status === 1 ? "rgba(255, 0, 0, 0.3)" : status === 0 ? "rgba(255, 255, 255, 0.3)" : "rgba(30, 215, 96, 0.3)"} as React.CSSProperties} onClick={() => setOpenModal(true)}>
                 <div className='rowTextLight no1'>{num}</div>
                 <div className='rowTextBold no2'>{nameUser}</div>
                 <div className='rowTextBold no3'>{nameSinger}</div>

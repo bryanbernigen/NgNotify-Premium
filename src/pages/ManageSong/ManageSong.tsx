@@ -24,7 +24,7 @@ const ManageSong = () => {
         setIsAdmin(admin);
 
         // make request
-        fetch("http://localhost:3000/songs/", {
+        fetch("http://localhost:3000/songs/?penyanyi_id="+localStorage.getItem("user_id"), {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),
@@ -63,7 +63,7 @@ const ManageSong = () => {
             songsEl.push(
                 <SongCard
                     judul={songs[i].judul}
-                    penyanyi={songs[i].namapenyanyi}
+                    penyanyi={songs[i].penyanyi}
                     audio_path={songs[i].audio_path}
                     image_path={songs[i].image_path}
                     penyanyi_id={songs[i].penyanyi_id}

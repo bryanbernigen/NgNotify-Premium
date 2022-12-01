@@ -10,6 +10,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
     const [login, setLogin] = useState(false);
+    const [tried, setTried] = useState(false);
 
     const getCreds = async() => {
         const response = await fetch("http://localhost:3000/user", {
@@ -53,6 +54,7 @@ const Login = () => {
     };
 
     const checkLogin = async() => {
+        setTried(true);
         const response = await fetch("http://localhost:3000/auth/login/", {
             method: 'POST',
             headers: {
@@ -91,7 +93,7 @@ const Login = () => {
             <div className="login">
                 <div className="loginPrompt">To continue, log in to Spotify.</div>
                 {
-                    login ? 
+                    login || !tried ? 
                         <></>
                     :   <div className="loginFail">
                             <img src="/icons8-warning-67.png" />

@@ -7,7 +7,7 @@ const SongCard = ({ judul = 'No Song Found', penyanyi = 'Unknown', audio_path = 
     const navigate = useNavigate();
 
     const getSongs = async() => {
-        const response = await fetch("http://localhost:3000/songs/", {
+        const response = await fetch("http://localhost:3000/songs/?penyanyi_id="+localStorage.getItem("user_id"), {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),

@@ -74,6 +74,8 @@ const ListSubscription = () => {
                     userID = {subsList[i].subscriber_id}
                     singerID = {subsList[i].creator_id}
                     num = {i}
+                    subsList = {subsList}
+                    setSubsList = {setSubsList}
                 />
             );
         }

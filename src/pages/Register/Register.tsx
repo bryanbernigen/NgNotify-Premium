@@ -14,6 +14,7 @@ const Register = () => {
 
     const navigate = useNavigate();
     const [registered, setRegistered] = useState(false);
+    const [tried, setTried] = useState(false);
 
     const [debounce, setDebounce] = useState(0);
     const [status, setStatus] = useState("");
@@ -148,6 +149,7 @@ const Register = () => {
 
     const checkRegister = async() => {
         if (email === confirmEmail && status === "true" && usernameValid === "true") {
+            setTried(true);
             const response = await fetch("http://localhost:3000/auth/register/", {
                 method: 'POST',
                 headers: {
@@ -187,7 +189,7 @@ const Register = () => {
             <div className="registerPrompt">Sign up for free to start listening.</div>
             {/* <div className="failPrompt" id="failPrompt"></div> */}
             {
-                registered ? 
+                !registered || tried ? 
                     <div className="loginFail">
                         <img src="/icons8-warning-67.png" />
                         <div className="incorrectUnamePass">Register failed, try again.</div>
