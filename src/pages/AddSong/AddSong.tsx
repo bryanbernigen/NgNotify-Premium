@@ -9,7 +9,8 @@ const AddSong = () => {
     const [name, setName] = useState("guest");
     const [isAdmin, setIsAdmin] = useState(false);
     const [songTitle, setSongTitle] = useState("");
-    const [duration, setDuration] = useState(0);
+    const [duration, setDuration] = useState("");
+    const [sekon, setSekon] = useState(0);
     const [audioPath, setAudioPath] = useState("");
     const [imagePath, setImagePath] = useState("");
     const [uploadedImg, setUploadedImg] = useState("");
@@ -25,7 +26,8 @@ const AddSong = () => {
             body: JSON.stringify({
                 judul: songTitle,
                 audio_path: audioPath,
-                image_path: imagePath
+                image_path: imagePath,
+                duration: sekon,
             })
         });
         
@@ -48,11 +50,33 @@ const AddSong = () => {
     }, []);
 
     function autoEditDuration({audio_path = ""}: {audio_path: string}) {
-        let audio = new Audio(audio_path);
+        let audio = new Audio("https://docs.google.com/uc?export=download&id=" + audio_path.match(/(\/d\/)([-a-zA-Z0-9]+)(\/)/)![2]);
+        console.log("https://docs.google.com/uc?export=download&id=" + audio_path.match(/(\/d\/)([-a-zA-Z0-9]+)(\/)/)![2]);
         audio.addEventListener('loadedmetadata', function() {
-            setDuration(audio.duration);
+            let durasi = Math.round(audio.duration);
+            let minute = Math.floor(durasi / 60);
+            let second = Math.floor(durasi % 60);
+            setDuration(minute + '.' + second);
+            setSekon(Math.round(audio.duration));
         });
     };
+
+    // function formatTime(time: number){
+    //     var date = new Date(0);
+    //     date.setSeconds(time); // specify value for SECONDS here
+    //     var timeString = date.toISOString().substring(11, 19);
+    //     if(timeString[0] == "0" && timeString[1] == "0"){
+    //         if(timeString[3] == "0" && timeString[4] == "0"){
+    //             return timeString.substring(6,8);
+    //         }
+    //         else{
+    //             return timeString.substring(3,8);
+    //         }
+    //     }
+    //     else{
+    //         return timeString;
+    //     }
+    // }
 
     return (
         <div className='wrapper'>
@@ -69,7 +93,7 @@ const AddSong = () => {
                         <input className="formInputText" type="text" name="singer" value={name} disabled/><br />
                         <br />
                         <label className="formLabel" htmlFor="duration">Duration</label><br />
-                        <input className="formInputText" type="number" name="duration" placeholder="0" disabled /><br />
+                        <input className="formInputText" type="number" name="duration" value={duration} disabled /><br />
                         <br />
                         <label className="formLabel" htmlFor="audioupload1">Audio Path<br /></label>
                         <input className="formInputText" type="text" name="audiopath" onChange={(e) => {autoEditDuration({audio_path: e.target.value}); setAudioPath(e.target.value)}} /><br />

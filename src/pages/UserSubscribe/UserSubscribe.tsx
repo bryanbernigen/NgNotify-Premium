@@ -136,7 +136,6 @@ const UserSubscribe = () => {
     function appendChoices() {
         let choicesEl : any = [];
         for (let i = 0; i < artistList.length; i++) { // BE also implement pagination
-            console.log("ini artist nya", i);
             console.log(artistList[i]);
             choicesEl.push(
                 <>

@@ -5,15 +5,17 @@ import Topbar from '../reusables/topbar/topbar';
 import Pagination from '../reusables/pagination/pagination';
 import './ListSubscription.css';
 import Row from './components/row/row';
+import { useDebounce } from 'usehooks-ts';
 
 const ListSubscription = () => {
     const [uname, setUname] = useState("guest");
     const [name, setName] = useState("guest");
     const [isAdmin, setIsAdmin] = useState(false);
     const dataPerPage = 10;
-    let totalPage = 2;
+    let totalPage = 0;
     const [currentPage, setCurrentPage] = useState(1);
     const [subsList, setSubsList] = useState<any[]>([]);
+    const debouncedValue = useDebounce<string>(uname, 2000);
 
     useEffect(() => {
         setUname(localStorage.getItem("username") || "guest");
@@ -41,12 +43,12 @@ const ListSubscription = () => {
             })
             .then(data => {
                 // use request
-                console.log("sini");
                 console.log(data.subsList);
                 setSubsList(data.subsList);
+                totalPage = data.subList.length;
             })
             .catch(err => console.log("error:", err));
-    }, []);
+    }, [debouncedValue]);
 
     function appendSubscriptions() {
         let subsEl : any = [];
@@ -58,12 +60,11 @@ const ListSubscription = () => {
             </div>
         );
         for (let i = 0; i < subsList.length; i++) {
-            console.log("ini subs nya", i);
             console.log(subsList[i]);
             subsEl.push(
                 <Row
-                    nameUser = {subsList[i].user_name}
-                    nameSinger = {subsList[i].singer_name}
+                    nameUser = {subsList[i].nama_subscriber}
+                    nameSinger = {subsList[i].nama_penyanyi}
                     status = {subsList[i].status}
                     userID = {subsList[i].user_id}
                     singerID = {subsList[i].singer_id}

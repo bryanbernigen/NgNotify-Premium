@@ -44,7 +44,6 @@ const ManageSong = () => {
             })
             .then(data => {
                 // use request
-                console.log("sini");
                 console.log(data.data);
                 setSongs(data.data);
                 totalPage = data.data.length;
@@ -56,7 +55,6 @@ const ManageSong = () => {
     function appendSongs() {
         let songsEl : any = [];
         for (let i = 0; i < songs.length; i++) {
-            console.log("ini songs nya", i);
             console.log(songs[i]);
             songsEl.push(
                 <SongCard
