@@ -35,6 +35,10 @@ const ManageSong = () => {
             .then(function(res) {
                 if(res.ok) {
                     console.log("response ok");
+                    if (res.status === 444) {
+                        localStorage.removeItem("accessToken");
+                        window.location.href = "/login";
+                    }
                     return res.json();
                 }
                 else {

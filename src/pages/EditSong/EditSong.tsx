@@ -33,13 +33,14 @@ const EditSong = () => {
             .then(function(res) {
                 if(res.ok) {
                     console.log("response ok");
+                    if (res.status === 444) {
+                        localStorage.removeItem("accessToken");
+                        window.location.href = "/login";
+                    }
                     return res.json();
                 }
-                // else {
-                //     navigate("/login");
-                // }
                 throw new Error('Network response was not ok.');
-            })
+            }            )
             .then(data => {
                 // use request
                 console.log(data.data);
@@ -100,6 +101,11 @@ const EditSong = () => {
         else {
             console.log("add song success");
             console.log(data);
+        }
+
+        if (response.status === 444) {
+            localStorage.removeItem("accessToken");
+            window.location.href = "/login";
         }
     };
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Modal from 'react-modal';
 import './row.css'
 
-const Row = ({ nameUser = "User", nameSinger = "Singer", status = 1, userID = 1, singerID = 1, num }: { nameUser: string, nameSinger: string, status: number, userID: number, singerID: number, num: number }) => {
+const Row = ({ nameUser, nameSinger, status, userID, singerID, num }: { nameUser: string, nameSinger: string, status: number, userID: number, singerID: number, num: number }) => {
     const [isOpenModal, setOpenModal] = useState(false);
     function closeModal() {
         setOpenModal(false);
@@ -13,16 +13,22 @@ const Row = ({ nameUser = "User", nameSinger = "Singer", status = 1, userID = 1,
     // Status = -1 --> REJECTED
     function reqSubs({user_id, singer_id, action}: {user_id: number, singer_id: number, action: string}) {
         console.log(user_id, singer_id, action);
+        console.log(JSON.stringify({
+            creator_id: user_id,
+            subscriber_id: singer_id,
+            status: action,
+        }));
         fetch("http://localhost:3000/subscription/update/", {
             method: 'POST',
             headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                creator_id: user_id,
-                subscriber_id: singer_id,
-                action: action,
+                creator_id: singer_id,
+                subscriber_id: user_id,
+                status: action,
             }),
         })
             .then(res => res.json())
@@ -35,7 +41,7 @@ const Row = ({ nameUser = "User", nameSinger = "Singer", status = 1, userID = 1,
 
     return (
         <>
-            <div className='row' style={{"--bgcolor": status === 1 ? "rgba(30, 215, 96, 0.5)" : status === 0 ? "rgba(255, 255, 255, 0.5)" : "rgba(255, 0, 0, 0.5)"} as React.CSSProperties} onClick={() => setOpenModal(true)}>
+            <div className='row' style={{"--bgcolor": status === 1 ? "rgba(30, 215, 96, 0.3)" : status === 0 ? "rgba(255, 255, 255, 0.3)" : "rgba(255, 0, 0, 0.3)"} as React.CSSProperties} onClick={() => setOpenModal(true)}>
                 <div className='rowTextLight no1'>{num}</div>
                 <div className='rowTextBold no2'>{nameUser}</div>
                 <div className='rowTextBold no3'>{nameSinger}</div>

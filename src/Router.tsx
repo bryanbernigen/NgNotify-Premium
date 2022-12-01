@@ -1,15 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import FourOhFour from "./pages/FourOhFour/FourOhFour";
 import App from "./App";
-import DetailSong from "./pages/DetailSong/DetailSong";
 import ManageSong from "./pages/ManageSong/ManageSong";
-import ListUsers from "./pages/ListUsers/ListUsers";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import ListSubscription from "./pages/ListSubscription/ListSubscription";
 import AddSong from "./pages/AddSong/AddSong";
 import EditSong from "./pages/EditSong/EditSong";
-import UserSubscribe from "./pages/UserSubscribe/UserSubscribe";
 
 let pages = [
   {
@@ -21,20 +17,12 @@ let pages = [
     element: <ManageSong />,
   },
   {
-    path: "/listusers",
-    element: <ListUsers />,
-  },
-  {
     path: "/login",
     element: <Login />,
   },
   {
     path: "/register",
     element: <Register />,
-  },
-  {
-    path: "/detailsong",
-    element: <DetailSong />,
   },
   {
     path: "/listsubscription",
@@ -47,10 +35,6 @@ let pages = [
   {
     path: "/editsong",
     element: <EditSong />,
-  },
-  {
-    path: "/usersubscribe",
-    element: <UserSubscribe />,
   }
 ];
 

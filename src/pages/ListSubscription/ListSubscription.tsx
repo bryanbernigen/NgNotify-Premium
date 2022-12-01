@@ -34,6 +34,10 @@ const ListSubscription = () => {
             .then(function(res) {
                 if(res.ok) {
                     console.log("response ok");
+                    if (res.status === 444) {
+                        localStorage.removeItem("accessToken");
+                        window.location.href = "/login";
+                    }
                     return res.json();
                 }
                 // else {
@@ -43,6 +47,7 @@ const ListSubscription = () => {
             })
             .then(data => {
                 // use request
+                console.log("hai bryan");
                 console.log(data.subsList);
                 setSubsList(data.subsList);
                 totalPage = data.subList.length;
@@ -66,8 +71,8 @@ const ListSubscription = () => {
                     nameUser = {subsList[i].nama_subscriber}
                     nameSinger = {subsList[i].nama_penyanyi}
                     status = {subsList[i].status}
-                    userID = {subsList[i].user_id}
-                    singerID = {subsList[i].singer_id}
+                    userID = {subsList[i].subscriber_id}
+                    singerID = {subsList[i].creator_id}
                     num = {i}
                 />
             );

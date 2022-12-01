@@ -40,6 +40,11 @@ const AddSong = () => {
             console.log("add song success");
             console.log(data);
         }
+
+        if (response.status === 444) {
+            localStorage.removeItem("accessToken");
+            window.location.href = "/login";
+        }
     };
 
     useEffect(() => {
@@ -60,23 +65,6 @@ const AddSong = () => {
             setSekon(Math.round(audio.duration));
         });
     };
-
-    // function formatTime(time: number){
-    //     var date = new Date(0);
-    //     date.setSeconds(time); // specify value for SECONDS here
-    //     var timeString = date.toISOString().substring(11, 19);
-    //     if(timeString[0] == "0" && timeString[1] == "0"){
-    //         if(timeString[3] == "0" && timeString[4] == "0"){
-    //             return timeString.substring(6,8);
-    //         }
-    //         else{
-    //             return timeString.substring(3,8);
-    //         }
-    //     }
-    //     else{
-    //         return timeString;
-    //     }
-    // }
 
     return (
         <div className='wrapper'>

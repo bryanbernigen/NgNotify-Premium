@@ -22,12 +22,16 @@ const Login = () => {
         });
         
         const data = await response.json();
-
+        
         if (!response.ok) {
             console.log("get user fail");
             setLogin(false);
         }
         else {
+            if (response.status === 444) {
+                localStorage.removeItem("accessToken");
+                window.location.href = "/login";
+            }
             console.log("get user success");
             setLogin(true);
             console.log(data['user']);
