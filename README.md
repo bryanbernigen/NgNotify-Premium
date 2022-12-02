@@ -1,92 +1,191 @@
-# NgNotify Premium App
+<a name="readme-top"></a>
+<br />
+<div align="center">
+  <a href="https://gitlab.informatika.org/if3110-2022-k01-02-32/ngnotify-premium-app">
+    <img src="assets/ngnotify.png" alt="Logo">
+  </a>
+
+  <h3 align="center">Ngnotify Premium App</h3>
+
+  <p align="center">
+    :indonesia: Platform Subscription Lagu Karya Anak Bangsa :indonesia:<br>
+    Penantang Search Engine Gatot Kaca Sebagai Karya Terbaik Anak Bangsa
+</div>
 
 
 
-## Getting started
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#dependencies">Dependencies</a></li>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#contributions">Contributions</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
-## Add your files
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+Ngnotify Premium adalah sebuah web app khusus untuk para penyanyi yang ingin ~memonetize~ menampilkan lagu premium pada ngnotify app. Web app ini dibuat untuk memenuhi ~Tugas Besar 2 IF3110 Teknik Informatika ITB~ panggilan negara untuk mencintai produk karya anak bangsa. Karena itu, kami membuat sebuah produk lokal agar terdapat produk Indonesia untuk dicintai :heart:heart:heart
+
+Sebagai pembantu Ngnotify app dalam menyaingi  Search Engine Gatot Kaca untuk gelar aplikasi anak bangsa terbaik, Ngnotify Premium memiliki fitur yang sangat ~tidak~ lengkap. Ngnotify Premium memiliki fitur login, register, add edit delete lagu, accept dan reject subscription (khusus admin), dan..... kayanya itu aja sih.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+### Built With
+
+* vite
+* React
+* Typescript
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+Tanpa Berlama-lama inilah cara menjalankan web app
+
+### Dependencies
+Agar Program dapat berjalan dengan baik, silahkan install juga repo-repo berikut:
 
 ```
-cd existing_repo
-git remote add origin https://gitlab.informatika.org/if3110-2022-k01-02-32/ngnotify-premium-app.git
-git branch -M main
-git push -uf origin main
+https://gitlab.informatika.org/if3110-2022-k01-02-32/ngnotify-app
+```
+```
+https://gitlab.informatika.org/if3110-2022-k01-02-32/ngnotify-rest-service
+```
+```
+https://gitlab.informatika.org/if3110-2022-k01-02-32/ngnotify-soap-service
 ```
 
-## Integrate with your tools
+### Prerequisites
 
-- [ ] [Set up project integrations](https://gitlab.informatika.org/if3110-2022-k01-02-32/ngnotify-premium-app/-/settings/integrations)
+* Docker
+    ```sh
+    https://www.docker.com/
+    ```
+* Git
+    ```sh
+    https://git-scm.com/downloads
+    ```
+* NPM
+    ```sh
+    https://www.npmjs.com/get-npm
+    ```
+* Internet (karena Database online)
+* Kesabaran (karena akses data sering kali lemot - <i>maklum gratis</i>)
 
-## Collaborate with your team
+### Installation
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
 
-## Test and Deploy
 
-Use the built-in continuous integration in GitLab.
+1. Clone Repo ini dengan menggunakan cmd pada directory yang diinginkan
+    ```sh
+    C:\Users\MerekLaptop> 
+    git clone https://gitlab.informatika.org/if3110-2022-k01-02-32/ngnotify-premium-app
+    ```
+2. Buka Directory tempat file di clone
+   ```sh
+   C:\Users\MerekLaptop> cd ngnotify-premium-app
+   C:\Users\MerekLaptop\ngnotify-premium-app>
+   ```
+3. CARA 1 MELALUI DOCKER: Jalankan docker 
+   ```sh
+   C:\Users\MerekLaptop\ngnotify-premium-app>
+   docker-compose up -d
+   ```
+   CARA 2 MELALUI LOCAL: Jalankan npm
+   ```sh
+    C:\Users\MerekLaptop\ngnotify-premium-app>
+    npm install
+    npm run dev
+    ```
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+4. buka http://localhost:3010 di ~chrome~ browser favorit kalian
+5. Ngnotify Premium siap untuk dipakai secara terbatas 
+6. Untuk menggunakan seluruh layanan web, jalankan seluruh (<a href="#dependencies">dependencies</a>) yang ada
+7. Jika dependencies sudah dijalankan, Ngnotify Premium siap untuk dipakai secara full :smile:
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
+<!-- USAGE EXAMPLES -->
 ## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+1. Login
+<img src="assets/login.png" alt="Login Page">
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+2. Register
+<img src="assets/registerfailed.png" alt="Register Failed">
+<img src="assets/registersuccess.png" alt="Register Success">
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+3. Manage Song
+<img src="assets/managesong.png" alt="Manage Song">
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+4. Add Song
+<img src="assets/addsong.png" alt="Add Song">
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+5. Edit Song
+<img src="assets/editsong.png" alt="Edit Song">
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+6. Manage Subscription
+<img src="assets/subscriptionlist.png" alt="Manage Subscription">
+<img src="assets/acceptreject.png" alt="Accept or Reject Subscription">
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+## Contributions
+|feature|13520019|13520034|13520040|
+|-------|--------|--------|--------|
+|AddSong|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+|EditSong|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+|ListSubscription|:heavy_check_mark:|heavy_check_mark|:heavy_check_mark:|
+|Login|:heavy_check_mark:|heavy_check_mark|:heavy_check_mark:|
+|ManageSong|:heavy_check_mark:|:heavy_check_mark:|heavy_check_mark|heavy_check_mark|
+|Register|:heavy_check_mark:|:heavy_check_mark:||
+|Reusable|:heavy_check_mark:|||
+|Docker||:heavy_check_mark:|:heavy_check_mark:|
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- LICENSE -->
 ## License
-For open source projects, say how it is licensed.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Distributed under the NG License. See you again for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- CONTACT -->
+## Contact
+|Name|Contact|Github|
+|----|-------|------|
+|Maharani Ayu Putri Irawan | 13520019@std.stei.itb.ac.id| <a href="https://www.github.com/rannnayy">@rannnayy</a>|
+|Bryan Bernigen | 13520034@std.stei.itb.ac.id |<a href="https://www.github.com/Nk-Kyle">@Nk-Kyle</a>|
+|Ng Kyle | 13520040@std.stei.itb.ac.id|<a href="https://www.github.com/bryanbernigen">@bryanbernigen</a>|
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
