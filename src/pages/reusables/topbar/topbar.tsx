@@ -7,7 +7,6 @@ const Topbar = ({creds = "guest", isAdmin = false}: {creds: string, isAdmin: boo
     const navigate = useNavigate();
 
     function loginout() {
-        console.log(creds);
         if (creds === "guest") {
             navigate('/login');
         } else {

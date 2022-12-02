@@ -1,6 +1,6 @@
 .sidebar {
     width: 15vw;
-    height: 100vh;
+    min-height: 100vh;
     display: block;
     position: fixed;
     padding: 25px;
@@ -29,6 +29,8 @@
 
 .sidebarLogo:hover {
     cursor: pointer;
+    transition: 0.2s;
+    scale: 1.1;
 }
 
 .sidebarBottom {
@@ -60,6 +62,8 @@
 .sidebarItems:hover {
     cursor: pointer;
     color: white;
+    transition: 0.2s;
+    scale: 1.1;
 }
 
 .spc {
@@ -81,4 +85,40 @@
 .link, .link:focus, .link:hover, .link:visited, .link:link, .link:active {
     text-decoration: none;
     color: #B3B3B3;
+}
+
+@media screen and (max-width: 800px) {
+    .sidebar {
+        padding: 25px 15px;
+    }
+    .sidebarIcon {
+        width: 18px;
+        height: 18px;
+    }
+    .spc {
+        width: 14px;
+        height: 14px;
+        padding: 2px;
+    }
+    .sidebarItems {
+        column-gap: 5px;
+    }
+    .sidebarBottom {
+        font-size: 12px;
+    }
+    .sidebarItems {
+        column-gap: 10px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .sidebar {
+        padding: 25px 5px;
+    }
+    .sidebarBottom {
+        font-size: 10px;
+    }
+    .sidebarItems {
+        column-gap: 5px;
+    }
 }

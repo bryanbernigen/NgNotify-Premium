@@ -4,7 +4,6 @@ import './pagination.css'
 
 const Pagination = ({ totalPage, currentPage, setCurrentPage }: { totalPage: number, currentPage: number, setCurrentPage: any }) => {
     const paginationRange = Array.from({length: totalPage}, (_, i) => i);
-    console.log(paginationRange);
 
     const onNext = () => {
         if (currentPage !== totalPage) {

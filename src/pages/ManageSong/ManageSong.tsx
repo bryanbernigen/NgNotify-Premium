@@ -13,7 +13,7 @@ const ManageSong = () => {
     const [uname, setUname] = useState("guest");
     const [isAdmin, setIsAdmin] = useState(false);
     const dataPerPage = 10;
-    let totalPage = 0;
+    const [totalPage, setTotalPage] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [songs, setSongs] = useState<any[]>([]);
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ const ManageSong = () => {
         setIsAdmin(admin);
 
         // make request
-        fetch("http://localhost:3000/songs/?penyanyi_id="+localStorage.getItem("user_id"), {
+        fetch("http://localhost:3000/songs/?penyanyi_id="+localStorage.getItem("user_id")+"&page="+currentPage+"&limit=10", {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),
@@ -48,18 +48,18 @@ const ManageSong = () => {
             })
             .then(data => {
                 // use request
-                console.log(data.data);
+                // console.log(data.data);
                 setSongs(data.data);
-                totalPage = data.data.length;
-                console.log(totalPage);
+                setTotalPage(data.pages);
+                // console.log(totalPage);
             })
             .catch(err => console.log("error:", err));
-    }, []);
+    }, [currentPage]);
 
     function appendSongs() {
         let songsEl : any = [];
         for (let i = 0; i < songs.length; i++) {
-            console.log(songs[i]);
+            // console.log(songs[i]);
             songsEl.push(
                 <SongCard
                     judul={songs[i].judul}
@@ -80,8 +80,9 @@ const ManageSong = () => {
             <Sidebar creds={uname} isAdmin={isAdmin} />
             <div className='ct'>
                 <Topbar creds={uname} isAdmin={isAdmin} />
-                <div className="userCt">
+                <div className="managesongCt">
                     <div className="userTitle">Manage Songs</div>
+                    <br />
                     <div className="manipButtons">
                         <Link to="/addsong">
                             <button className="manipButton"><FaPlus /> Add Song</button>
@@ -90,7 +91,7 @@ const ManageSong = () => {
                             <button className="manipButton"><FaEdit /> Edit Song</button>
                         </Link>
                     </div>
-                    <div className="homeCt">
+                    <div className="songsCt">
                         { appendSongs() }
                     </div>
                     <Pagination totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />

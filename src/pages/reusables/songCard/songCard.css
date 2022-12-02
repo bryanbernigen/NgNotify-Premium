@@ -17,6 +17,7 @@
 .card:hover {
     background-color: #1a1a1a;
     scale: 1.05;
+    transition: 0.2s;
 }
 
 .card:active {

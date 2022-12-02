@@ -17,15 +17,20 @@
     margin-left: 19vw;
 }
 
+.editsongCt {
+    padding: 5vh;
+}
+
 .formEdit {
     font-family: "CircularStd-Light";
     width: 36vw;
 }
 
-.formLabel {
+.formLabelWhite {
     font-family: "CircularStd-Medium";
     font-size: 14px;
     float: left;
+    color: white;
 }
 
 .formInputText {
@@ -100,4 +105,15 @@
     object-fit: cover;
     border: 1px solid #8C8C8C;
     border-radius: 10px;
+}
+
+@media screen and (max-width: 800px) {
+    .formEdit {
+        width: 50vw;
+    }
+
+    .clippedImage {
+        width: 15vw;
+        height: 15vw;
+    }
 }

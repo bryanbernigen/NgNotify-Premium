@@ -12,12 +12,12 @@ const Row = ({ nameUser, nameSinger, status, userID, singerID, num, subsList, se
     // Status = 0 --> PENDING
     // Status = -1 --> REJECTED
     function reqSubs({user_id, singer_id, action}: {user_id: number, singer_id: number, action: string}) {
-        console.log(user_id, singer_id, action);
-        console.log(JSON.stringify({
-            creator_id: user_id,
-            subscriber_id: singer_id,
-            status: action,
-        }));
+        // console.log(user_id, singer_id, action);
+        // console.log(JSON.stringify({
+        //     creator_id: user_id,
+        //     subscriber_id: singer_id,
+        //     status: action,
+        // }));
         fetch("http://localhost:3000/subscription/update/", {
             method: 'POST',
             headers: {
@@ -34,7 +34,7 @@ const Row = ({ nameUser, nameSinger, status, userID, singerID, num, subsList, se
             .then(res => res.json())
             .then(data => {
                 // use request
-                console.log(data);
+                // console.log(data);
                 setSubsList(subsList.filter((item: any) => (item.creator_id !== singer_id || item.subscriber_id !== user_id)));
             })
             .catch(err => console.log("error:", err));
@@ -44,8 +44,8 @@ const Row = ({ nameUser, nameSinger, status, userID, singerID, num, subsList, se
         <>
             <div className='row' style={{"--bgcolor": status === 1 ? "rgba(255, 0, 0, 0.3)" : status === 0 ? "rgba(255, 255, 255, 0.3)" : "rgba(30, 215, 96, 0.3)"} as React.CSSProperties} onClick={() => setOpenModal(true)}>
                 <div className='rowTextLight no1'>{num}</div>
-                <div className='rowTextBold no2'>{nameUser}</div>
-                <div className='rowTextBold no3'>{nameSinger}</div>
+                <div className='rowTextLight no2'>{nameUser}</div>
+                <div className='rowTextLight no3'>{nameSinger}</div>
             </div>
             <Modal isOpen={isOpenModal} onRequestClose={closeModal} className="mymodal" overlayClassName="myoverlay">
                 <div className='modalText'>What to do with this subscription request?</div>

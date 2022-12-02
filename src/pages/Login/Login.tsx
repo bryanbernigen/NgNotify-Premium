@@ -35,19 +35,19 @@ const Login = () => {
             }
             console.log("get user success");
             setLogin(true);
-            console.log(data['user']);
+            // console.log(data['user']);
             localStorage.setItem("user_id", data['user'].user_id);
             localStorage.setItem("username", data['user'].username);
             localStorage.setItem("email", data['user'].email);
             localStorage.setItem("name", data['user'].name);
             localStorage.setItem("isAdmin", data['user'].isAdmin);
-            console.log(localStorage.getItem("isAdmin"));
+            // console.log(localStorage.getItem("isAdmin"));
             if (data['user'].isAdmin) {
-                console.log("admin");
+                // console.log("admin");
                 navigate('/listsubscription');
             }
             else {
-                console.log("singer");
+                // console.log("singer");
                 navigate('/managesong');
             }
         }
@@ -74,7 +74,7 @@ const Login = () => {
         }
         else {
             console.log("login success");
-            console.log(data);
+            // console.log(data);
             localStorage.setItem("accessToken", data['accessToken']);
             getCreds();
         }
@@ -88,17 +88,17 @@ const Login = () => {
         <div className="loginCt">
             <div className="header">
                 <img className="headerImg" src="/Spotify_Logo_RGB_Black.png"/>
-                <hr/>
+                <hr className='headerhr'/>
             </div>
             <div className="login">
                 <div className="loginPrompt">To continue, log in to Spotify.</div>
                 {
-                    login || !tried ? 
-                        <></>
-                    :   <div className="loginFail">
-                            <img src="/icons8-warning-67.png" />
-                            <div className="incorrectUnamePass">Incorrect username or password.</div>
-                        </div>
+                    (!login && tried) ?
+                    <div className="loginFail">
+                        <img src="/icons8-warning-67.png" />
+                        <div className="incorrectUnamePass">Incorrect username or password.</div>
+                    </div>
+                :   <></>
                 }
                 <a className="loginPhone link" href="">CONTINUE WITH PHONE NUMBER</a>
                 <div className="loginOr">

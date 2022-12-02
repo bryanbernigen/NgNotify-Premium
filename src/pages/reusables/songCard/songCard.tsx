@@ -19,17 +19,13 @@ const SongCard = ({ judul = 'No Song Found', penyanyi = 'Unknown', audio_path = 
         const data = await response.json();
 
         if (!response.ok) {
-            console.log("get songs fail");
         }
         else {
-            console.log("get songs success");
-            console.log(data.data);
             set_song(data.data);
         }
     };
 
     function deleteSong({song_id}: {song_id: number}) {
-        console.log("delete song");
         fetch("http://localhost:3000/songs/delete", {
             method: 'POST',
             headers: {
@@ -43,15 +39,12 @@ const SongCard = ({ judul = 'No Song Found', penyanyi = 'Unknown', audio_path = 
         })
             .then(function(res) {
                 if(res.ok) {
-                    console.log("response ok");
                     return res.json();
                 }
                 throw new Error('Network response was not ok.');
             })
             .then(data => {
                 // use request
-                console.log("delete success");
-                console.log(data.data);
                 getSongs();
             })
             .catch(err => console.log("error:", err));

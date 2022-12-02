@@ -12,7 +12,7 @@ const Twotone = ({ picUser, picSinger, nameUser = "User", nameSinger = "Singer",
     // Status = 0 --> PENDING
     // Status = -1 --> REJECTED
     function reqSubs({user_id, singer_id, action}: {user_id: number, singer_id: number, action: number}) {
-        console.log(user_id, singer_id, action);
+        // console.log(user_id, singer_id, action);
         // setup request
         // let bodyContent = JSON.stringify({
         //     user_id: user_id,

@@ -7,53 +7,36 @@ const Sidebar = ({ creds = 'guest', isAdmin = false }: { creds: string, isAdmin:
     return (
         <div className="sidebar">
             <div className="sidebarTop">
-                <Link to="/home" className='link'>
+                <Link to={isAdmin === true ? "/listsubscription" : "/managesong"} className='link'>
                     <img className="sidebarLogo" src="/Spotify_Logo_RGB_White.png"/>
                 </Link>
             </div>
             <div className="sidebarMiddleWrap">
                 <div className="sidebarBottom">
-                    <Link to={ creds === "admin" ? "/listsubscription" : "/managesong" } className='link'>
+                    <Link to={ isAdmin === true ? "/listsubscription" : "/managesong" } className='link'>
                         <div className="sidebarItems">
                             <img className="sidebarIcon" src="/icons8-home-144.png"/>
                             <span className="sidebarText">Home</span>
                         </div>
                     </Link>
-                    <Link to="/searchsortfilter" className='link'>
-                        <div className="sidebarItems">
-                            <img className="sidebarIcon" src="/icons8-search-120.png"/>
-                            <span className="sidebarText">Search</span>
-                        </div>
-                    </Link>
-                    <Link to="/albums" className='link'>
-                        <div className="sidebarItems">
-                            <img className="sidebarIcon" src="/icons8-music-library-96.png"/>
-                            <span className="sidebarText">Albums</span>
-                        </div>
-                    </Link>
                     {
-                        isAdmin === true ?
+                        isAdmin === false ? 
                             <>
-                                <Link to="/adddata" className='link'>
+                                <Link to="/addsong" className='link'>
                                     <div className="sidebarItems">
                                         <img className="sidebarIcon" src="/icons8-add-song-96.png"/>
                                         <span className="sidebarText">Add Song</span>
                                     </div>
                                 </Link>
-                                <Link to="/adddata" className='link'>
+                                <Link to="/editsong" className='link'>
                                     <div className="sidebarItems">
                                         <img className="sidebarIcon" src="/icons8-music-library-96.png"/>
-                                        <span className="sidebarText">Add Album</span>
-                                    </div>
-                                </Link>
-                                <Link to="/listusers" className='link'>
-                                    <div className="sidebarItems">
-                                        <img className="sidebarIcon" src="/icons8-select-users-96.png"/>
-                                        <span className="sidebarText">Users</span>
+                                        <span className="sidebarText">Edit Song</span>
                                     </div>
                                 </Link>
                             </>
-                        :   <></>
+                        :   
+                            <></>
                     }
                 </div>
             </div>

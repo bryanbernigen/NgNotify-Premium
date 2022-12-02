@@ -49,7 +49,7 @@ const Register = () => {
             .then(res => res.json())
             .then(data => {
                 // use request
-                console.log(data['status']);
+                // console.log(data['status']);
                 if(data['status']){
                     setStatus("true");
                 }
@@ -75,7 +75,7 @@ const Register = () => {
             .then(res => res.json())
             .then(data => {
                 // use request
-                console.log(data['status']);
+                // console.log(data['status']);
                 if(data['status']){
                     setUsernameValid("true");
                 }
@@ -103,19 +103,19 @@ const Register = () => {
         }
         else {
             console.log("get user success");
-            console.log(data['user']);
+            // console.log(data['user']);
             localStorage.setItem("user_id", data['user'].user_id);
             localStorage.setItem("username", data['user'].username);
             localStorage.setItem("email", data['user'].email);
             localStorage.setItem("name", data['user'].name);
             localStorage.setItem("isAdmin", data['user'].isAdmin);
-            console.log(localStorage.getItem("isAdmin"));
+            // console.log(localStorage.getItem("isAdmin"));
             if (data['user'].isAdmin) {
-                console.log("admin");
+                // console.log("admin");
                 navigate('/listsubscription');
             }
             else {
-                console.log("singer");
+                // console.log("singer");
                 navigate('/managesong');
             }
         }
@@ -141,7 +141,7 @@ const Register = () => {
         }
         else {
             console.log("login success");
-            console.log(data);
+            // console.log(data);
             localStorage.setItem("accessToken", data['accessToken']);
             getCreds();
         }
@@ -173,7 +173,7 @@ const Register = () => {
             }
             else {
                 console.log("register success");
-                console.log(data);
+                // console.log(data);
                 setRegistered(true);
                 checkLogin();
             }

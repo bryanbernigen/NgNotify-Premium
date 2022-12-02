@@ -1,15 +1,18 @@
 .footerPage {
-    width: 93%;
+    width: 89%;
     color: white;
-    padding: 30px;
+    padding: 20px;
 }
 
 .footerTop {
     text-align: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .footerTopLeft {
-    float: left;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -42,7 +45,6 @@
 }
 
 .footerTopRight {
-    float: right;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -115,4 +117,10 @@
 .footerBottomLeft a:active { 
     text-decoration: underline; 
     color: white;
+}
+
+@media screen and (max-width: 800px) {
+    .footerTopLeft {
+        column-gap: 15%;
+    }
 }

@@ -17,7 +17,18 @@
     margin-left: 19vw;
 }
 
-.homeCt {
+.userTitle {
+    text-align: left;
+    font-family: "CircularStd-Bold";
+    color: white;
+    font-size: 96px;
+}
+
+.managesongCt {
+    padding: 5vh;
+}
+
+.songsCt {
     color: white;
     display: flex;
     flex-direction: row;

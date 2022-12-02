@@ -9,26 +9,16 @@ const Navbar = ({creds = "guest", isAdmin = false}: {creds: string, isAdmin: boo
     const navigate = useNavigate();
 
     function loginout() {
+        console.log(creds);
         if (creds === "guest") {
             navigate('/login');
         } else {
             // logout
-            fetch("http://localhost:8000/api/auth/logout", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-            })
-                .then(res => res.json())
-                .then(data => {
-                    // use request
-                    if (data['data']['status']) {
-                        console.log("logout success");
-                        navigate('/login');
-                    }
-                })
-                .catch(err => console.log("error:", err));
+            localStorage.removeItem("accessToken");
+            localStorage.removeItem("username");
+            localStorage.removeItem("name");
+            localStorage.removeItem("isAdmin");
+            navigate('/login');
         }
     }
 
@@ -37,7 +27,7 @@ const Navbar = ({creds = "guest", isAdmin = false}: {creds: string, isAdmin: boo
             <nav>
                 <div className="navCt" id="navCt">
                     <div className="navLeft">
-                        <Link to="/home" className='link'>
+                        <Link to={isAdmin === true ? "/listsubscription" : "/managesong"} className='link'>
                             <img className="navLogo" src="/Spotify_Logo_RGB_White.png"/>
                         </Link>
                         <div className="navSearch">

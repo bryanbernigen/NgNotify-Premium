@@ -10,7 +10,7 @@
     min-height: 5vh;
 
     font-family: "CircularStd-Light";
-    font-size: 16px;
+    font-size: 24px;
     cursor: pointer;
     color: white;
 
@@ -26,14 +26,13 @@
 
 .rowTextBold {
     font-family: "CircularStd-Bold";
-    font-size: 16px;
-    /* margin-bottom: 5px; */
+    font-size: 22px;
     color: var(--bordercolor);
 }
 
 .rowTextLight {
     font-family: "CircularStd-Light";
-    font-size: 12px;
+    font-size: 20px;
     /* margin-bottom: 5px; */
     color: white;
 }
@@ -83,6 +82,11 @@
     justify-content: space-evenly;
 }
 
+.modalButton:hover {
+    scale: 1.1;
+    transition: 0.3s;
+    cursor: pointer;
+}
 .modalButton {
     background-color: #1ed760;
     border: none;
@@ -111,4 +115,16 @@
   
 .ReactModal__Overlay--before-close {
     opacity: 0;
+}
+
+@media screen and (max-width: 1280px) {
+    .row {
+        font-size: 20px;
+    }
+    .rowTextBold {
+        font-size: 18px;
+    }
+    .rowTextLight {
+        font-size: 16px;
+    }
 }
